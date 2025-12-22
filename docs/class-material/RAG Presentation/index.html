@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מצגת פרק 4: RAG - תפריט ראשי</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #C85450 0%, #D4A574 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .container {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.3);
+            padding: 3rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 3px solid #C85450;
+        }
+        .title {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+        .subtitle {
+            font-size: 1.8rem;
+            color: #64748b;
+            margin-bottom: 1rem;
+        }
+        .author {
+            font-size: 1.3rem;
+            color: #94a3b8;
+            margin-top: 1rem;
+        }
+        .slides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .slide-card {
+            background: linear-gradient(135deg, #FEF2F2 0%, #FEF9E7 100%);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: #1e293b;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .slide-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(200,84,80,0.2);
+            border-color: #C85450;
+        }
+        .slide-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #C85450;
+            min-width: 50px;
+        }
+        .slide-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e2e8f0;
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+        .instructions {
+            background: #FEF3C7;
+            border-left: 4px solid #F59E0B;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .instructions h3 {
+            color: #92400E;
+            margin-bottom: 0.75rem;
+        }
+        .instructions p {
+            color: #78350F;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">RAG - אחזור משופר-ייצור</h1>
+            <h2 class="subtitle" dir="ltr">Retrieval-Augmented Generation</h2>
+            <p style="font-size: 1.5rem; color: #C85450; margin: 1rem 0;">פרק 4</p>
+            <p style="font-size: 1.2rem; color: #64748b;">מתוך: סוכני AI בסביבת Claude</p>
+            <p class="author">ד"ר יורם סגל • נובמבר 2025</p>
+        </div>
+        
+        <div class="instructions">
+            <h3>הוראות שימוש</h3>
+            <p>לחץ על כל שקף כדי לצפות בו. ניתן לנווט בין השקפים באמצעות כפתורי "הבא" ו"הקודם", או באמצעות מקשי החצים במקלדת. לחץ על "תפריט ראשי" או ESC כדי לחזור לדף זה.</p>
+        </div>
+        
+        <div class="slides-grid">
+            <a href="slide-01.html" class="slide-card">
+                <div class="slide-number">1</div>
+                <div class="slide-title">שקף פתיחה - RAG</div>
+            </a>
+            
+            <a href="slide-02.html" class="slide-card">
+                <div class="slide-number">2</div>
+                <div class="slide-title">אנלוגיית הספרן המיומן - הבעיה היסודית</div>
+            </a>
+            
+            <a href="slide-03.html" class="slide-card">
+                <div class="slide-number">3</div>
+                <div class="slide-title">ארכיטקטורת RAG - עקרונות יסוד</div>
+            </a>
+            
+            <a href="slide-04.html" class="slide-card">
+                <div class="slide-number">4</div>
+                <div class="slide-title">רכיבי הליבה של RAG - ארבעת העמודים</div>
+            </a>
+            
+            <a href="slide-05.html" class="slide-card">
+                <div class="slide-number">5</div>
+                <div class="slide-title">מערכות אחזור מסמכים - Vector Databases</div>
+            </a>
+            
+            <a href="slide-06.html" class="slide-card">
+                <div class="slide-number">6</div>
+                <div class="slide-title">תהליך אחזור מסמכים - Pipeline מלא</div>
+            </a>
+            
+            <a href="slide-07.html" class="slide-card">
+                <div class="slide-number">7</div>
+                <div class="slide-title">יצירת Embeddings - מהפכת SBERT</div>
+            </a>
+            
+            <a href="slide-08.html" class="slide-card">
+                <div class="slide-number">8</div>
+                <div class="slide-title">בחירת מודל Embedding - MTEB Benchmark</div>
+            </a>
+            
+            <a href="slide-09.html" class="slide-card">
+                <div class="slide-number">9</div>
+                <div class="slide-title">אסטרטגיות Chunking - אמנות הפיצול</div>
+            </a>
+            
+            <a href="slide-10.html" class="slide-card">
+                <div class="slide-number">10</div>
+                <div class="slide-title">Contextual Retrieval - פריצת דרך של Anthropic</div>
+            </a>
+            
+            <a href="slide-11.html" class="slide-card">
+                <div class="slide-number">11</div>
+                <div class="slide-title">RAG vs Fine-tuning - מתי להשתמש במה?</div>
+            </a>
+            
+            <a href="slide-12.html" class="slide-card">
+                <div class="slide-number">12</div>
+                <div class="slide-title">שבע נקודות הכשל ב-RAG - חלק א'</div>
+            </a>
+            
+            <a href="slide-13.html" class="slide-card">
+                <div class="slide-number">13</div>
+                <div class="slide-title">שבע נקודות הכשל ב-RAG - חלק ב'</div>
+            </a>
+            
+            <a href="slide-14.html" class="slide-card">
+                <div class="slide-number">14</div>
+                <div class="slide-title">GraphRAG - הדור הבא של אחזור</div>
+            </a>
+            
+            <a href="slide-15.html" class="slide-card">
+                <div class="slide-number">15</div>
+                <div class="slide-title">אופטימיזציה וביצועים - משולש האיזונים</div>
+            </a>
+            
+            <a href="slide-16.html" class="slide-card">
+                <div class="slide-number">16</div>
+                <div class="slide-title">סיכום ומסקנות - RAG כפילוסופיה</div>
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p><strong>סה"כ 16 שקפים</strong> • מצגת מקצועית על RAG</p>
+            <p style="margin-top: 0.5rem;">© כל הזכויות שמורות לד"ר יורם סגל • נובמבר 2025</p>
+        </div>
+    </div>
+    
+    <script>
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                location.href = 'slide-01.html';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שקף 07: ארבעת מצבי הכישלון - חלק ב'</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #C85450 0%, #D4A574 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .slide {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            padding: 3rem;
+            max-width: 1400px;
+            width: 100%;
+            min-height: 600px;
+        }
+        .slide-header {
+            border-bottom: 3px solid #C85450;
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .slide-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1e293b;
+            text-align: right;
+            margin-bottom: 0.5rem;
+        }
+        .slide-body {
+            display: flex;
+            gap: 2rem;
+            align-items: start;
+        }
+        .content {
+            width: 65%;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #334155;
+        }
+        .image-container {
+            width: 35%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .highlight-box {
+            background: #FEF2F2;
+            border-left: 4px solid #C85450;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+        }
+        .success-box {
+            background: #FEF9E7;
+            border-left: 4px solid #D4A574;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+        }
+        .warning-box {
+            background: #FEF3C7;
+            border-left: 4px solid #F59E0B;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+        }
+        .nav-bar {
+            background: white;
+            padding: 1.5rem 3rem;
+            box-shadow: 0 -4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-btn {
+            padding: 0.75rem 2rem;
+            font-size: 1.1rem;
+            border: 2px solid #C85450;
+            background: white;
+            color: #C85450;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .nav-btn:hover {
+            background: #C85450;
+            color: white;
+        }
+        .nav-btn.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        .home-btn {
+            background: #C85450;
+            color: white;
+            border: none;
+        }
+        .home-btn:hover {
+            background: #A84440;
+        }
+        .slide-counter {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #64748b;
+        }
+        h3 { font-size: 1.5rem; margin: 1rem 0 0.5rem; color: #1e293b; }
+        p { margin: 0.75rem 0; }
+        ul { margin: 1rem 0; padding-right: 2rem; }
+        ol { margin: 1rem 0; padding-right: 2rem; }
+        li { margin: 0.5rem 0; }
+        strong { color: #1e293b; }
+        .formula { text-align: center; margin: 1.5rem 0; font-size: 1.3rem; direction: ltr; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="slide">
+            <div class="slide-header">
+                <h1 class="slide-title">ארבעת מצבי הכישלון - חלק ב'</h1>
+            </div>
+            <div class="slide-body">
+                <div class="content">
+                    
+<div class="warning-box">
+    <h3>מצב כישלון 3: בלבול קשר (Context Confusion)</h3>
+    <p>ניסוי מרתק: נתנו למודל <strong>Llama 3.1 8b</strong> משימה גיאוגרפית עם <strong>46 כלים זמינים</strong>. הוא <strong>כשל לחלוטין</strong>, למרות שכל התיאור נכנס בנוחות בחלון של 16,000 tokens.</p>
+    <p><strong>אבל:</strong> כאשר הצמצמו את מספר הכלים ל-<strong>19</strong>, הוא <strong>הצליח מצוין</strong>!</p>
+    <p><strong>המסקנה:</strong> יותר מדי אפשרויות בקשר <strong>משתקות</strong> את יכולת ההחלטה. זה כמו תפריט של 200 מנות - האדם פשוט לא יכול לבחור.</p>
+    <p><strong>מקור:</strong> Zilliz (2025)</p>
+</div>
+
+<div class="warning-box">
+    <h3>מצב כישלון 4: התנגשות קשר (Context Clash)</h3>
+    <p>כאשר <strong>קלטים סותרים</strong> נכנסים לחלון הקשר, המודל נתקע במעין <strong>"תקיעה רעיונית"</strong>.</p>
+    <p><strong>דוגמה:</strong></p>
+    <ul>
+        <li>מסמך A אומר: "החברה רווחית"</li>
+        <li>מסמך B אומר: "החברה בהפסד"</li>
+        <li>המודל: "אממ... אני לא יודע מה נכון"</li>
+    </ul>
+    <p>הוא לא יכול להחליט איזו אמת נכונה, ומייצר <strong>תשובות לא עקביות</strong> או תקועות לחלוטין.</p>
+    <p>זה כמו לקבל הוראות מנוגדות משני מפקדים בו זמנית - <strong>הבלבול מוביל לשיתוק</strong>.</p>
+</div>
+
+<div class="success-box">
+    <h3>הקשר האנושי - דניאל כהנמן</h3>
+    <p>מצבי הכישלון האלו אינם רק בעיה טכנית של מכונות - הם משקפים <strong>מגבלות קוגניטיביות אנושיות יסודיות</strong>.</p>
+    <p>דניאל כהנמן, זוכה פרס נובל, כתב: <em>"People who are cognitively busy are also more likely to make selfish choices, use sexist language, and make superficial judgments."</em></p>
+    <p><strong>המסקנה:</strong> כאשר המוח שלנו מוצף במידע, הוא עובר למצב הישרדות - מפסיק לחשוב לעומק, מסתמך על קיצורי דרך, ועושה טעויות.</p>
+    <p><strong>בדיוק אותו דבר קורה ל-LLMs</strong> כאשר חלון הקשר שלהם מתמלא.</p>
+</div>
+
+<p><strong>מקור:</strong> עמ' 28-29, פרק 3 | Kahneman (2011) "Thinking, Fast and Slow"</p>
+
+                </div>
+                
+        <div class="image-container">
+            <img src="slide-06-failure-modes.png" alt="ארבעת מצבי הכישלון - חלק ב'">
+        </div>
+        
+            </div>
+        </div>
+    </div>
+    
+    <div class="nav-bar">
+        <a href="slide-06.html" class="nav-btn">
+            ← הקודם
+        </a>
+        <div style="display: flex; gap: 1.5rem; align-items: center;">
+            <span class="slide-counter">7 / 16</span>
+            <a href="index.html" class="nav-btn home-btn">🏠 תפריט ראשי</a>
+        </div>
+        <a href="slide-08.html" class="nav-btn">
+            הבא →
+        </a>
+    </div>
+    
+    <script>
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' && true) {
+                location.href = 'slide-06.html';
+            } else if (e.key === 'ArrowLeft' && true) {
+                location.href = 'slide-08.html';
+            } else if (e.key === 'Home' || e.key === 'Escape') {
+                location.href = 'index.html';
+            }
+        });
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof renderMathInElement !== 'undefined') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ]
+                });
+            }
+        });
+    </script>
+</body>
+</html>

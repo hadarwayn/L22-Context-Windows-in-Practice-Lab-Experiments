@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שקף 04: רכיבי הליבה של RAG - ארבעת העמודים</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #C85450 0%, #D4A574 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .slide {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            padding: 3rem;
+            max-width: 1400px;
+            width: 100%;
+            min-height: 600px;
+        }
+        .slide-header {
+            border-bottom: 3px solid #C85450;
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .slide-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1e293b;
+            text-align: right;
+            margin-bottom: 0.5rem;
+        }
+        .slide-body {
+            display: flex;
+            gap: 2rem;
+            align-items: start;
+        }
+        .content {
+            width: 65%;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #334155;
+        }
+        .image-container {
+            width: 35%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .highlight-box {
+            background: #FEF2F2;
+            border-left: 4px solid #C85450;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+        }
+        .success-box {
+            background: #FEF9E7;
+            border-left: 4px solid #D4A574;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+        }
+        .warning-box {
+            background: #FEF3C7;
+            border-left: 4px solid #F59E0B;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+        }
+        .nav-bar {
+            background: white;
+            padding: 1.5rem 3rem;
+            box-shadow: 0 -4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-btn {
+            padding: 0.75rem 2rem;
+            font-size: 1.1rem;
+            border: 2px solid #C85450;
+            background: white;
+            color: #C85450;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .nav-btn:hover {
+            background: #C85450;
+            color: white;
+        }
+        .nav-btn.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        .home-btn {
+            background: #C85450;
+            color: white;
+            border: none;
+        }
+        .home-btn:hover {
+            background: #A84440;
+        }
+        .slide-counter {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #64748b;
+        }
+        h3 { font-size: 1.5rem; margin: 1rem 0 0.5rem; color: #1e293b; }
+        h4 { font-size: 1.3rem; margin: 0.75rem 0 0.5rem; color: #334155; }
+        p { margin: 0.75rem 0; }
+        ul { margin: 1rem 0; padding-right: 2rem; }
+        ol { margin: 1rem 0; padding-right: 2rem; }
+        li { margin: 0.5rem 0; }
+        strong { color: #1e293b; }
+        code { background: #f1f5f9; padding: 0.2rem 0.5rem; border-radius: 0.25rem; font-family: monospace; }
+        .formula { text-align: center; margin: 1.5rem 0; font-size: 1.3rem; direction: ltr; }
+        table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+        th, td { padding: 0.75rem; border: 1px solid #e2e8f0; }
+        th { background: #f8fafc; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="slide">
+            <div class="slide-header">
+                <h1 class="slide-title">רכיבי הליבה של RAG - ארבעת העמודים</h1>
+            </div>
+            <div class="slide-body">
+                <div class="content">
+                    
+        <p>מערכת RAG מורכבת מ<strong>ארבעה רכיבים מרכזיים</strong> שעובדים יחד. כל רכיב חייב לעבוד מצוין - החוליה החלשה קובעת את ביצועי המערכת כולה.</p>
+        
+        <div class="highlight-box">
+            <h3>1. Query Encoder - מקודד השאילתה</h3>
+            <p>תפקיד: להמיר את <strong>שאילתת המשתמש</strong> (טקסט) ל<strong>וקטור מספרי</strong> (embedding) שמייצג את המשמעות הסמנטית.</p>
+            <p><strong>טכנולוגיות:</strong> BERT, Sentence-BERT, OpenAI Embeddings, Cohere</p>
+            <p><strong>אתגר:</strong> השאילתה בדרך כלל קצרה (5-20 מילים) - צריך לתפוס את הכוונה בדיוק</p>
+        </div>
+        
+        <div class="success-box">
+            <h3>2. Document Encoder - מקודד המסמכים</h3>
+            <p>תפקיד: להמיר את <strong>כל המסמכים במאגר</strong> לווקטורים. זה נעשה <strong>פעם אחת</strong> בשלב ההכנה (indexing).</p>
+            <p><strong>חשוב:</strong> Query Encoder ו-Document Encoder חייבים להשתמש ב<strong>אותו מודל</strong> או במודלים תואמים, אחרת הדמיון הוקטורי לא יעבוד!</p>
+        </div>
+        
+        <div class="highlight-box">
+            <h3>3. Retrieval Module - מנוע האחזור</h3>
+            <p>תפקיד: למצוא את ה-<strong>top-k מסמכים</strong> הדומים ביותר לשאילתה, על בסיס <strong>דמיון וקטורי</strong>.</p>
+            <p><strong>טכנולוגיות:</strong> FAISS, Pinecone, Weaviate, Chroma, Qdrant</p>
+            <p><strong>מדד דמיון נפוץ:</strong> Cosine Similarity</p>
+            <div class="formula">$$\text{similarity}(q, d) = \frac{q \cdot d}{||q|| \cdot ||d||}$$</div>
+        </div>
+        
+        <div class="success-box">
+            <h3>4. Generator - מייצר התשובה</h3>
+            <p>תפקיד: לקבל את <strong>השאילתה + המסמכים שאוחזרו</strong>, ולייצר תשובה <strong>מבוססת-מקור</strong>.</p>
+            <p><strong>מודלים:</strong> GPT-4, Claude, Gemini, Llama</p>
+            <p><strong>אתגר:</strong> לא להמציא מידע, להישאר נאמן למקורות, לצטט נכון</p>
+        </div>
+        
+        <p><strong>מקור:</strong> עמ' 69-70, פרק 4</p>
+    
+                </div>
+                
+        <div class="image-container">
+            <img src="rag_4_components.png" alt="רכיבי הליבה של RAG - ארבעת העמודים">
+        </div>
+        
+            </div>
+        </div>
+    </div>
+    
+    <div class="nav-bar">
+        <a href="slide-03.html" class="nav-btn">
+            ← הקודם
+        </a>
+        <div style="display: flex; gap: 1.5rem; align-items: center;">
+            <span class="slide-counter">4 / 16</span>
+            <a href="index.html" class="nav-btn home-btn">🏠 תפריט ראשי</a>
+        </div>
+        <a href="slide-05.html" class="nav-btn">
+            הבא →
+        </a>
+    </div>
+    
+    <script>
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' && true) {
+                location.href = 'slide-03.html';
+            } else if (e.key === 'ArrowLeft' && true) {
+                location.href = 'slide-05.html';
+            } else if (e.key === 'Home' || e.key === 'Escape') {
+                location.href = 'index.html';
+            }
+        });
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof renderMathInElement !== 'undefined') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ]
+                });
+            }
+        });
+    </script>
+</body>
+</html>

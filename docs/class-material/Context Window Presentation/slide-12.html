@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שקף 12: אסטרטגיות Compress & Isolate</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #C85450 0%, #D4A574 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .slide {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            padding: 3rem;
+            max-width: 1400px;
+            width: 100%;
+            min-height: 600px;
+        }
+        .slide-header {
+            border-bottom: 3px solid #C85450;
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .slide-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1e293b;
+            text-align: right;
+            margin-bottom: 0.5rem;
+        }
+        .slide-body {
+            display: flex;
+            gap: 2rem;
+            align-items: start;
+        }
+        .content {
+            width: 65%;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #334155;
+        }
+        .image-container {
+            width: 35%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .highlight-box {
+            background: #FEF2F2;
+            border-left: 4px solid #C85450;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+        }
+        .success-box {
+            background: #FEF9E7;
+            border-left: 4px solid #D4A574;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+        }
+        .warning-box {
+            background: #FEF3C7;
+            border-left: 4px solid #F59E0B;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+        }
+        .nav-bar {
+            background: white;
+            padding: 1.5rem 3rem;
+            box-shadow: 0 -4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-btn {
+            padding: 0.75rem 2rem;
+            font-size: 1.1rem;
+            border: 2px solid #C85450;
+            background: white;
+            color: #C85450;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .nav-btn:hover {
+            background: #C85450;
+            color: white;
+        }
+        .nav-btn.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        .home-btn {
+            background: #C85450;
+            color: white;
+            border: none;
+        }
+        .home-btn:hover {
+            background: #A84440;
+        }
+        .slide-counter {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #64748b;
+        }
+        h3 { font-size: 1.5rem; margin: 1rem 0 0.5rem; color: #1e293b; }
+        p { margin: 0.75rem 0; }
+        ul { margin: 1rem 0; padding-right: 2rem; }
+        ol { margin: 1rem 0; padding-right: 2rem; }
+        li { margin: 0.5rem 0; }
+        strong { color: #1e293b; }
+        .formula { text-align: center; margin: 1.5rem 0; font-size: 1.3rem; direction: ltr; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="slide">
+            <div class="slide-header">
+                <h1 class="slide-title">אסטרטגיות Compress & Isolate</h1>
+            </div>
+            <div class="slide-body">
+                <div class="content">
+                    
+<div class="strategy-detail">
+    <h3 style="color: #3B82F6;">אסטרטגיה 3: COMPRESS - דחיסה יעילה</h3>
+    <p><strong>הרעיון:</strong> שמור את המידע, אבל <strong>בפורמט דחוס</strong>.</p>
+    
+    <div class="technique-box">
+        <h4>טכניקה 1: סיכום היררכי</h4>
+        <p>סכם את ההיסטוריה ב<strong>שכבות</strong>:</p>
+        <ul>
+            <li><strong>רמה 1:</strong> 100 צעדים אחרונים - מלאים</li>
+            <li><strong>רמה 2:</strong> 1000 צעדים - סיכום של כל 10</li>
+            <li><strong>רמה 3:</strong> 10,000 צעדים - סיכום של כל 100</li>
+        </ul>
+        <p><strong>יתרון:</strong> גישה מהירה לעבר הקרוב, שמירה על הקשר ארוך טווח</p>
+    </div>
+    
+    <div class="technique-box">
+        <h4>טכניקה 2: Prompt Compression (LLMLingua)</h4>
+        <p>דחוס את ה-prompt עצמו:</p>
+        <ul>
+            <li>הסר מילות מילוי</li>
+            <li>קצר משפטים</li>
+            <li>שמור רק את הליבה</li>
+        </ul>
+        <p><strong>דוגמה:</strong></p>
+        <p style="text-decoration: line-through;">"אנא חפש בבסיס הנתונים את כל המסמכים הרלוונטיים לנושא AI"</p>
+        <p style="color: #10B981; font-weight: bold;">"חפש: AI מסמכים רלוונטיים"</p>
+        <p><strong>חיסכון:</strong> 70% tokens, אותה משמעות!</p>
+    </div>
+</div>
+
+<div class="strategy-detail" style="margin-top: 2rem;">
+    <h3 style="color: #10B981;">אסטרטגיה 4: ISOLATE - בידוד אסטרטגי</h3>
+    <p><strong>הרעיון:</strong> אל תעשה הכל בסוכן אחד - <strong>הפרד למשימות</strong>.</p>
+    
+    <div class="technique-box">
+        <h4>טכניקה 1: Multi-Agent Architecture</h4>
+        <p>כל סוכן עם <strong>חלון קשר נפרד</strong>:</p>
+        <ul>
+            <li><strong>סוכן מחקר:</strong> מחפש מידע</li>
+            <li><strong>סוכן ניתוח:</strong> מנתח תוצאות</li>
+            <li><strong>סוכן כתיבה:</strong> מייצר דוח</li>
+        </ul>
+        <p>כל אחד רואה רק את <strong>החלק הרלוונטי לו</strong></p>
+    </div>
+    
+    <div class="technique-box">
+        <h4>טכניקה 2: RAG (Retrieval-Augmented Generation)</h4>
+        <p>שמור מידע <strong>מחוץ</strong> לחלון הקשר:</p>
+        <ul>
+            <li>אחסן במאגר חיצוני (Vector DB)</li>
+            <li>אחזר רק כשצריך</li>
+            <li>חלון הקשר נשאר נקי</li>
+        </ul>
+    </div>
+</div>
+
+<p><strong>מקור:</strong> עמ' 35-38, פרק 3</p>
+
+                </div>
+                
+        <div class="image-container">
+            <img src="slide-10-four-strategies.png" alt="אסטרטגיות Compress & Isolate">
+        </div>
+        
+            </div>
+        </div>
+    </div>
+    
+    <div class="nav-bar">
+        <a href="slide-11.html" class="nav-btn">
+            ← הקודם
+        </a>
+        <div style="display: flex; gap: 1.5rem; align-items: center;">
+            <span class="slide-counter">12 / 16</span>
+            <a href="index.html" class="nav-btn home-btn">🏠 תפריט ראשי</a>
+        </div>
+        <a href="slide-13.html" class="nav-btn">
+            הבא →
+        </a>
+    </div>
+    
+    <script>
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' && true) {
+                location.href = 'slide-11.html';
+            } else if (e.key === 'ArrowLeft' && true) {
+                location.href = 'slide-13.html';
+            } else if (e.key === 'Home' || e.key === 'Escape') {
+                location.href = 'index.html';
+            }
+        });
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof renderMathInElement !== 'undefined') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ]
+                });
+            }
+        });
+    </script>
+</body>
+</html>

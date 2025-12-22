@@ -1,0 +1,885 @@
+{
+  "project_name": "LLM Context Window Research - Context Windows in Practice",
+  "version": "2.0",
+  "created_date": "December 2025",
+  "total_estimated_hours": 24,
+  "requirements_source": "context-windows-lab.pdf",
+
+  "experiments_summary": {
+    "total_experiments": 4,
+    "experiments": [
+      {
+        "id": 1,
+        "name": "Needle in Haystack (Lost in the Middle)",
+        "duration": "~15 minutes",
+        "difficulty": "Basic"
+      },
+      {
+        "id": 2,
+        "name": "Context Window Size Impact",
+        "duration": "~20 minutes",
+        "difficulty": "Medium"
+      },
+      {
+        "id": 3,
+        "name": "RAG Impact",
+        "duration": "~25 minutes",
+        "difficulty": "Medium+"
+      },
+      {
+        "id": 4,
+        "name": "Context Engineering Strategies",
+        "duration": "~30 minutes",
+        "difficulty": "Advanced"
+      }
+    ]
+  },
+
+  "phases": [
+    {
+      "phase": "1_setup",
+      "phase_name": "Project Setup & Configuration",
+      "estimated_hours": 3,
+      "description": "Create directory structure, virtual environment, and configuration files",
+      "tasks": [
+        {
+          "id": "1.1",
+          "name": "Create directory structure",
+          "priority": "critical",
+          "estimated_hours": 0.5,
+          "dependencies": [],
+          "description": "Create all required folders following PROJECT_GUIDELINES.md",
+          "files_to_create": [
+            "README.md",
+            "main.py",
+            "requirements.txt",
+            ".gitignore",
+            ".env.example",
+            "venv/.gitkeep",
+            "src/__init__.py",
+            "src/experiments/__init__.py",
+            "src/generators/__init__.py",
+            "src/models/__init__.py",
+            "src/rag/__init__.py",
+            "src/analysis/__init__.py",
+            "src/utils/__init__.py",
+            "results/.gitkeep",
+            "results/experiments/.gitkeep",
+            "results/graphs/.gitkeep",
+            "logs/config/log_config.json",
+            "tests/__init__.py"
+          ],
+          "acceptance_criteria": [
+            "All directories exist with proper __init__.py files",
+            "venv/.gitkeep contains setup instructions",
+            "Directory structure matches PRD specification"
+          ]
+        },
+        {
+          "id": "1.2",
+          "name": "Create requirements.txt with exact versions",
+          "priority": "critical",
+          "estimated_hours": 0.25,
+          "dependencies": ["1.1"],
+          "description": "List all dependencies with pinned versions",
+          "files_to_create": ["requirements.txt"],
+          "packages": [
+            "numpy==1.24.3",
+            "pandas==2.0.2",
+            "matplotlib==3.7.1",
+            "seaborn==0.12.2",
+            "scipy==1.10.1",
+            "chromadb==0.4.0",
+            "sentence-transformers==2.2.2",
+            "requests==2.31.0",
+            "python-dotenv==1.0.0",
+            "tiktoken==0.5.1",
+            "tqdm==4.66.1",
+            "pytest==7.4.0"
+          ],
+          "acceptance_criteria": [
+            "All packages have exact version numbers",
+            "No conflicts between dependencies"
+          ]
+        },
+        {
+          "id": "1.3",
+          "name": "Create .gitignore and .env.example",
+          "priority": "critical",
+          "estimated_hours": 0.25,
+          "dependencies": ["1.1"],
+          "description": "Protect secrets and configure environment template",
+          "files_to_create": [".gitignore", ".env.example"],
+          "acceptance_criteria": [
+            ".gitignore includes all secret patterns",
+            ".gitignore includes __pycache__, .venv, logs/*.log",
+            ".env.example has placeholder for API keys"
+          ]
+        },
+        {
+          "id": "1.4",
+          "name": "Create logging configuration",
+          "priority": "high",
+          "estimated_hours": 0.5,
+          "dependencies": ["1.1"],
+          "description": "Set up ring buffer logging system",
+          "files_to_create": [
+            "logs/config/log_config.json",
+            "src/utils/logger.py"
+          ],
+          "acceptance_criteria": [
+            "Ring buffer configured with max 1000 lines per file",
+            "Max 5 log files retained",
+            "Logger can be imported from src.utils"
+          ]
+        },
+        {
+          "id": "1.5",
+          "name": "Create configuration module",
+          "priority": "high",
+          "estimated_hours": 0.5,
+          "dependencies": ["1.1"],
+          "description": "Central configuration for experiments",
+          "files_to_create": ["src/utils/config.py"],
+          "config_items": [
+            "DOCUMENT_COUNTS: [2, 5, 10, 20, 50]",
+            "POSITIONS: ['start', 'middle', 'end']",
+            "TRIALS_PER_CONDITION: 3",
+            "WORDS_PER_DOC: 200",
+            "NUM_DOCS_EXP1: 5",
+            "CHUNK_SIZE: 500",
+            "RAG_TOP_K: 3"
+          ],
+          "acceptance_criteria": [
+            "All experiment parameters centralized",
+            "Easy to modify for different runs",
+            "Under 150 lines"
+          ]
+        },
+        {
+          "id": "1.6",
+          "name": "Create helper utilities",
+          "priority": "high",
+          "estimated_hours": 0.5,
+          "dependencies": ["1.1"],
+          "description": "Common utility functions",
+          "files_to_create": ["src/utils/helpers.py"],
+          "functions": [
+            "count_words(text: str) -> int",
+            "count_tokens(text: str) -> int",
+            "save_json(data: dict, path: Path) -> None",
+            "load_json(path: Path) -> dict",
+            "ensure_dir(path: Path) -> None",
+            "get_timestamp() -> str"
+          ],
+          "acceptance_criteria": [
+            "All functions have type hints",
+            "All functions have docstrings",
+            "Under 150 lines"
+          ]
+        },
+        {
+          "id": "1.7",
+          "name": "Set up UV virtual environment",
+          "priority": "critical",
+          "estimated_hours": 0.5,
+          "dependencies": ["1.2"],
+          "description": "Create and configure virtual environment",
+          "commands": [
+            "uv venv",
+            "source .venv/bin/activate (WSL) or .venv\\Scripts\\activate (Windows)",
+            "uv pip install -r requirements.txt"
+          ],
+          "acceptance_criteria": [
+            ".venv directory created",
+            "All packages installed successfully",
+            "Python version >= 3.10"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "2_model_interface",
+      "phase_name": "LLM Model Interface",
+      "estimated_hours": 3,
+      "description": "Create unified interface for LLM models",
+      "tasks": [
+        {
+          "id": "2.1",
+          "name": "Create base model interface",
+          "priority": "critical",
+          "estimated_hours": 1,
+          "dependencies": ["1.4", "1.5", "1.6"],
+          "description": "Abstract base class for LLM models",
+          "files_to_create": ["src/models/base_model.py"],
+          "classes": [
+            {
+              "name": "BaseModel",
+              "methods": [
+                "query(context: str, question: str, system_prompt: str = None) -> str",
+                "count_tokens(text: str) -> int",
+                "get_model_name() -> str"
+              ]
+            }
+          ],
+          "acceptance_criteria": [
+            "Abstract base class with clear interface",
+            "Error handling for API failures",
+            "Retry logic with exponential backoff",
+            "Under 150 lines"
+          ]
+        },
+        {
+          "id": "2.2",
+          "name": "Create LLM interface implementation",
+          "priority": "critical",
+          "estimated_hours": 1.5,
+          "dependencies": ["2.1"],
+          "description": "Concrete implementation supporting Ollama and APIs",
+          "files_to_create": ["src/models/llm_interface.py"],
+          "supported_backends": [
+            "Ollama (local)",
+            "OpenAI API",
+            "Anthropic API"
+          ],
+          "acceptance_criteria": [
+            "Implements all BaseModel methods",
+            "Configurable backend selection",
+            "Proper error handling for rate limits",
+            "Token counting using tiktoken",
+            "Under 150 lines"
+          ]
+        },
+        {
+          "id": "2.3",
+          "name": "Create models package exports",
+          "priority": "high",
+          "estimated_hours": 0.5,
+          "dependencies": ["2.1", "2.2"],
+          "description": "Export all models from package",
+          "files_to_create": ["src/models/__init__.py"],
+          "acceptance_criteria": [
+            "Clean imports from src.models",
+            "All public classes exported"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "3_generators",
+      "phase_name": "Test Data Generators",
+      "estimated_hours": 3,
+      "description": "Create synthetic test data generators",
+      "tasks": [
+        {
+          "id": "3.1",
+          "name": "Create document generator",
+          "priority": "critical",
+          "estimated_hours": 2,
+          "dependencies": ["1.5", "1.6"],
+          "description": "Generate documents with embedded facts at specified positions",
+          "files_to_create": ["src/generators/document_generator.py"],
+          "functions": [
+            "generate_filler_text(num_words: int, topic: str = 'business') -> str",
+            "embed_fact_at_position(text: str, fact: str, position: str) -> str",
+            "generate_document(total_words: int, fact: str, position: str) -> str",
+            "generate_document_set(num_docs: int, words_per_doc: int) -> List[str]",
+            "generate_hebrew_documents(num_docs: int, topics: List[str]) -> List[str]"
+          ],
+          "positions_supported": ["start", "middle", "end"],
+          "acceptance_criteria": [
+            "Generates coherent filler text",
+            "Accurately places facts at start/middle/end",
+            "Supports 200 words per document (Exp 1)",
+            "Supports Hebrew documents (Exp 3)",
+            "Under 150 lines"
+          ]
+        },
+        {
+          "id": "3.2",
+          "name": "Create generators package exports",
+          "priority": "high",
+          "estimated_hours": 0.5,
+          "dependencies": ["3.1"],
+          "description": "Export all generators from package",
+          "files_to_create": ["src/generators/__init__.py"],
+          "acceptance_criteria": [
+            "All generator functions accessible",
+            "Clean import structure"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "4_rag_components",
+      "phase_name": "RAG Components",
+      "estimated_hours": 3,
+      "description": "Create RAG infrastructure for Experiment 3",
+      "tasks": [
+        {
+          "id": "4.1",
+          "name": "Create embeddings module",
+          "priority": "critical",
+          "estimated_hours": 1,
+          "dependencies": ["1.5"],
+          "description": "Text embedding using sentence transformers",
+          "files_to_create": ["src/rag/embeddings.py"],
+          "functions": [
+            "embed_text(text: str) -> np.ndarray",
+            "embed_texts(texts: List[str]) -> np.ndarray",
+            "get_embedding_model() -> SentenceTransformer"
+          ],
+          "acceptance_criteria": [
+            "Uses sentence-transformers library",
+            "Supports batch embedding",
+            "Under 150 lines"
+          ]
+        },
+        {
+          "id": "4.2",
+          "name": "Create vector store module",
+          "priority": "critical",
+          "estimated_hours": 1.5,
+          "dependencies": ["4.1"],
+          "description": "Vector database using ChromaDB",
+          "files_to_create": ["src/rag/vector_store.py"],
+          "functions": [
+            "create_vector_store() -> ChromaDB",
+            "add_documents(store, docs: List[str], embeddings: np.ndarray) -> None",
+            "similarity_search(store, query: str, k: int = 3) -> List[str]",
+            "split_documents(docs: List[str], chunk_size: int = 500) -> List[str]"
+          ],
+          "acceptance_criteria": [
+            "ChromaDB integration working",
+            "Configurable k for top-k retrieval",
+            "Document chunking implemented",
+            "Under 150 lines"
+          ]
+        },
+        {
+          "id": "4.3",
+          "name": "Create RAG package exports",
+          "priority": "high",
+          "estimated_hours": 0.5,
+          "dependencies": ["4.1", "4.2"],
+          "description": "Export all RAG components from package",
+          "files_to_create": ["src/rag/__init__.py"],
+          "acceptance_criteria": [
+            "All RAG functions accessible",
+            "Clean import structure"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "5_experiments",
+      "phase_name": "Experiment Implementations",
+      "estimated_hours": 6,
+      "description": "Implement all 4 experiments as per requirements",
+      "tasks": [
+        {
+          "id": "5.1",
+          "name": "Create experiment base class",
+          "priority": "critical",
+          "estimated_hours": 0.5,
+          "dependencies": ["2.3", "3.2"],
+          "description": "Base class for all experiments with common functionality",
+          "files_to_create": ["src/experiments/base_experiment.py"],
+          "classes": [
+            {
+              "name": "BaseExperiment",
+              "methods": [
+                "run() -> dict",
+                "save_results(results: dict) -> Path",
+                "generate_graphs(results: dict) -> List[Path]"
+              ]
+            }
+          ],
+          "acceptance_criteria": [
+            "Common experiment logic abstracted",
+            "Result saving implemented",
+            "Under 150 lines"
+          ]
+        },
+        {
+          "id": "5.2",
+          "name": "Implement Experiment 1: Needle in Haystack",
+          "priority": "critical",
+          "estimated_hours": 1.5,
+          "dependencies": ["5.1"],
+          "description": "Test information retrieval by position (start/middle/end)",
+          "files_to_create": ["src/experiments/exp1_needle_in_haystack.py"],
+          "variables": {
+            "independent": ["position (start, middle, end)"],
+            "dependent": ["accuracy (0-100%)"]
+          },
+          "data_spec": {
+            "num_documents": 5,
+            "words_per_doc": 200,
+            "positions": ["start", "middle", "end"]
+          },
+          "outputs": {
+            "data": "exp1_needle_in_haystack.json",
+            "graphs": ["exp1_accuracy_by_position.png"]
+          },
+          "acceptance_criteria": [
+            "All 3 positions tested (start, middle, end)",
+            "5 documents with 200 words each",
+            "Results saved to JSON",
+            "Graph generated showing accuracy by position",
+            "Under 150 lines"
+          ]
+        },
+        {
+          "id": "5.3",
+          "name": "Implement Experiment 2: Context Window Size Impact",
+          "priority": "critical",
+          "estimated_hours": 1.5,
+          "dependencies": ["5.1"],
+          "description": "Test accuracy/latency with growing document counts",
+          "files_to_create": ["src/experiments/exp2_context_size.py"],
+          "variables": {
+            "independent": ["num_documents (2, 5, 10, 20, 50)"],
+            "dependent": ["accuracy", "latency", "tokens_used"]
+          },
+          "data_spec": {
+            "document_counts": [2, 5, 10, 20, 50]
+          },
+          "outputs": {
+            "data": "exp2_context_size.json",
+            "graphs": ["exp2_accuracy_vs_size.png", "exp2_latency_vs_size.png"]
+          },
+          "acceptance_criteria": [
+            "All 5 document counts tested (2, 5, 10, 20, 50)",
+            "Response time measured for each",
+            "Accuracy measured for each",
+            "Graphs showing degradation curves",
+            "Under 150 lines"
+          ]
+        },
+        {
+          "id": "5.4",
+          "name": "Implement Experiment 3: RAG Impact",
+          "priority": "critical",
+          "estimated_hours": 1.5,
+          "dependencies": ["5.1", "4.3"],
+          "description": "Compare Full Context vs RAG retrieval",
+          "files_to_create": ["src/experiments/exp3_rag_impact.py"],
+          "variables": {
+            "independent": ["retrieval_mode (full, rag)"],
+            "dependent": ["accuracy", "latency"]
+          },
+          "data_spec": {
+            "num_documents": 20,
+            "topics": ["technology", "law", "medicine"],
+            "language": "Hebrew",
+            "rag_k": 3
+          },
+          "outputs": {
+            "data": "exp3_rag_impact.json",
+            "graphs": ["exp3_performance_comparison.png"]
+          },
+          "acceptance_criteria": [
+            "20 Hebrew documents created",
+            "Full context mode tested",
+            "RAG mode tested (k=3)",
+            "Accuracy and latency compared",
+            "Graph showing comparison",
+            "Under 150 lines"
+          ]
+        },
+        {
+          "id": "5.5",
+          "name": "Implement Experiment 4: Context Engineering Strategies",
+          "priority": "critical",
+          "estimated_hours": 1.5,
+          "dependencies": ["5.1", "4.3"],
+          "description": "Compare Select, Compress, Write strategies",
+          "files_to_create": ["src/experiments/exp4_strategies.py"],
+          "strategies": ["select", "compress", "write"],
+          "data_spec": {
+            "num_actions": 10,
+            "simulation": "multi-step agent"
+          },
+          "outputs": {
+            "data": "exp4_strategies.json",
+            "graphs": ["exp4_strategy_performance.png"]
+          },
+          "acceptance_criteria": [
+            "10 sequential actions simulated",
+            "Select strategy implemented (RAG-based)",
+            "Compress strategy implemented (summarization)",
+            "Write strategy implemented (scratchpad)",
+            "Performance table generated",
+            "Under 150 lines"
+          ]
+        },
+        {
+          "id": "5.6",
+          "name": "Create experiments package exports",
+          "priority": "high",
+          "estimated_hours": 0.5,
+          "dependencies": ["5.2", "5.3", "5.4", "5.5"],
+          "description": "Export all experiments from package",
+          "files_to_create": ["src/experiments/__init__.py"],
+          "acceptance_criteria": [
+            "All experiments accessible via package",
+            "run_all_experiments() function available"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "6_analysis",
+      "phase_name": "Analysis & Visualization",
+      "estimated_hours": 3,
+      "description": "Statistical analysis and graph generation",
+      "tasks": [
+        {
+          "id": "6.1",
+          "name": "Create statistics module",
+          "priority": "critical",
+          "estimated_hours": 1,
+          "dependencies": ["1.6"],
+          "description": "Statistical analysis functions",
+          "files_to_create": ["src/analysis/statistics.py"],
+          "functions": [
+            "calculate_accuracy(results: List[bool]) -> float",
+            "calculate_mean_latency(latencies: List[float]) -> float",
+            "calculate_confidence_interval(data: np.ndarray) -> Tuple",
+            "compare_groups(group1: np.ndarray, group2: np.ndarray) -> dict"
+          ],
+          "acceptance_criteria": [
+            "Basic statistical functions implemented",
+            "NumPy vectorized operations",
+            "Under 150 lines"
+          ]
+        },
+        {
+          "id": "6.2",
+          "name": "Create visualization module",
+          "priority": "critical",
+          "estimated_hours": 1.5,
+          "dependencies": ["6.1"],
+          "description": "Graph generation for all experiments",
+          "files_to_create": ["src/analysis/visualizations.py"],
+          "functions": [
+            "create_accuracy_by_position_chart(results: dict, output: Path)",
+            "create_accuracy_vs_size_chart(results: dict, output: Path)",
+            "create_latency_vs_size_chart(results: dict, output: Path)",
+            "create_comparison_chart(full_results: dict, rag_results: dict, output: Path)",
+            "create_strategy_table(results: dict, output: Path)"
+          ],
+          "graph_standards": {
+            "dpi": 300,
+            "format": "png",
+            "include_title": true,
+            "include_labels": true,
+            "include_legend": true
+          },
+          "acceptance_criteria": [
+            "All 4 experiment graph types implemented",
+            "300 DPI output",
+            "Consistent color scheme",
+            "Under 150 lines"
+          ]
+        },
+        {
+          "id": "6.3",
+          "name": "Create analysis package exports",
+          "priority": "high",
+          "estimated_hours": 0.5,
+          "dependencies": ["6.1", "6.2"],
+          "description": "Export all analysis functions from package",
+          "files_to_create": ["src/analysis/__init__.py"],
+          "acceptance_criteria": [
+            "All analysis functions accessible",
+            "Clean import structure"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "7_main_entry",
+      "phase_name": "Main Entry Point",
+      "estimated_hours": 1.5,
+      "description": "Create main.py orchestration",
+      "tasks": [
+        {
+          "id": "7.1",
+          "name": "Create main.py entry point",
+          "priority": "critical",
+          "estimated_hours": 1.5,
+          "dependencies": ["5.6", "6.3"],
+          "description": "Main script that orchestrates entire experiment run",
+          "files_to_create": ["main.py"],
+          "workflow": [
+            "1. Display welcome message and experiment overview",
+            "2. Run Experiment 1: Needle in Haystack (~15 min)",
+            "3. Run Experiment 2: Context Size Impact (~20 min)",
+            "4. Run Experiment 3: RAG Impact (~25 min)",
+            "5. Run Experiment 4: Strategies (~30 min)",
+            "6. Generate all graphs",
+            "7. Display summary and conclusions"
+          ],
+          "cli_options": [
+            "--experiment N (run specific experiment only)",
+            "--skip-graphs (skip graph generation)",
+            "--verbose (detailed output)"
+          ],
+          "acceptance_criteria": [
+            "Runs all 4 experiments sequentially",
+            "Shows progress with tqdm",
+            "Generates all graphs",
+            "Under 150 lines"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "8_testing",
+      "phase_name": "Testing & Quality Assurance",
+      "estimated_hours": 2,
+      "description": "Unit tests and validation",
+      "tasks": [
+        {
+          "id": "8.1",
+          "name": "Create generator tests",
+          "priority": "high",
+          "estimated_hours": 1,
+          "dependencies": ["3.2"],
+          "description": "Test document generators",
+          "files_to_create": ["tests/test_generators.py"],
+          "test_cases": [
+            "test_document_word_count_accuracy",
+            "test_fact_position_accuracy",
+            "test_hebrew_document_generation"
+          ],
+          "acceptance_criteria": [
+            "All generators tested",
+            "All tests pass"
+          ]
+        },
+        {
+          "id": "8.2",
+          "name": "Create RAG tests",
+          "priority": "high",
+          "estimated_hours": 0.5,
+          "dependencies": ["4.3"],
+          "description": "Test RAG components",
+          "files_to_create": ["tests/test_rag.py"],
+          "test_cases": [
+            "test_embedding_generation",
+            "test_vector_store_creation",
+            "test_similarity_search"
+          ],
+          "acceptance_criteria": [
+            "All RAG components tested",
+            "All tests pass"
+          ]
+        },
+        {
+          "id": "8.3",
+          "name": "Create analysis tests",
+          "priority": "high",
+          "estimated_hours": 0.5,
+          "dependencies": ["6.3"],
+          "description": "Test statistical functions",
+          "files_to_create": ["tests/test_analysis.py"],
+          "test_cases": [
+            "test_accuracy_calculation",
+            "test_mean_latency_calculation"
+          ],
+          "acceptance_criteria": [
+            "Statistical functions validated",
+            "All tests pass"
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "9_finalization",
+      "phase_name": "Finalization & Documentation",
+      "estimated_hours": 1.5,
+      "description": "Final documentation and GitHub preparation",
+      "tasks": [
+        {
+          "id": "9.1",
+          "name": "Create comprehensive README.md",
+          "priority": "critical",
+          "estimated_hours": 1,
+          "dependencies": ["7.1"],
+          "description": "Create README with all required sections",
+          "files_to_create": ["README.md"],
+          "sections": [
+            "Title and overview",
+            "4 Experiments summary",
+            "Environment setup (UV instructions)",
+            "How to run",
+            "Project structure",
+            "Code files summary table",
+            "Results and graphs",
+            "Conclusions",
+            "License"
+          ],
+          "acceptance_criteria": [
+            "Professional structure",
+            "Clear installation instructions",
+            "Code files table included",
+            "Results section with graphs"
+          ]
+        },
+        {
+          "id": "9.2",
+          "name": "Final code review and line count verification",
+          "priority": "critical",
+          "estimated_hours": 0.25,
+          "dependencies": ["8.3"],
+          "description": "Verify all files under 150 lines",
+          "checks": [
+            "All .py files under 150 lines",
+            "All functions have docstrings",
+            "All functions have type hints",
+            "No hardcoded paths (use pathlib)"
+          ],
+          "acceptance_criteria": [
+            "No file exceeds 150 lines",
+            "Code passes all checks"
+          ]
+        },
+        {
+          "id": "9.3",
+          "name": "Prepare GitHub repository",
+          "priority": "high",
+          "estimated_hours": 0.25,
+          "dependencies": ["9.2"],
+          "description": "Initialize git and prepare for upload",
+          "commands": [
+            "git init",
+            "git add .",
+            "git commit -m 'Initial commit: Context Windows Lab Project'",
+            "git remote add origin <repo-url>",
+            "git push -u origin main"
+          ],
+          "acceptance_criteria": [
+            "Repository initialized",
+            ".gitignore working correctly",
+            "No secrets committed",
+            "Ready for push"
+          ]
+        }
+      ]
+    }
+  ],
+
+  "file_structure": {
+    "root": [
+      "README.md",
+      "main.py",
+      "requirements.txt",
+      ".gitignore",
+      ".env.example"
+    ],
+    "venv": [
+      ".gitkeep"
+    ],
+    "src": [
+      "__init__.py"
+    ],
+    "src/experiments": [
+      "__init__.py",
+      "base_experiment.py",
+      "exp1_needle_in_haystack.py",
+      "exp2_context_size.py",
+      "exp3_rag_impact.py",
+      "exp4_strategies.py"
+    ],
+    "src/generators": [
+      "__init__.py",
+      "document_generator.py"
+    ],
+    "src/models": [
+      "__init__.py",
+      "base_model.py",
+      "llm_interface.py"
+    ],
+    "src/rag": [
+      "__init__.py",
+      "embeddings.py",
+      "vector_store.py"
+    ],
+    "src/analysis": [
+      "__init__.py",
+      "statistics.py",
+      "visualizations.py"
+    ],
+    "src/utils": [
+      "__init__.py",
+      "logger.py",
+      "config.py",
+      "helpers.py"
+    ],
+    "docs/requirements": [
+      "PRD.md",
+      "tasks.json",
+      "context-windows-lab.pdf",
+      "PROJECT_GUIDELINES.md"
+    ],
+    "results/experiments": [".gitkeep"],
+    "results/graphs": [".gitkeep"],
+    "logs/config": ["log_config.json"],
+    "tests": [
+      "__init__.py",
+      "test_generators.py",
+      "test_rag.py",
+      "test_analysis.py"
+    ]
+  },
+
+  "total_files": 28,
+  "total_tasks": 26,
+
+  "outputs_summary": {
+    "experiment_1": {
+      "name": "Needle in Haystack",
+      "output": "Accuracy by position graph",
+      "expected_finding": "High accuracy at start/end, low at middle"
+    },
+    "experiment_2": {
+      "name": "Context Size Impact",
+      "output": "Latency vs size graph",
+      "expected_finding": "Accuracy decreases as context grows"
+    },
+    "experiment_3": {
+      "name": "RAG Impact",
+      "output": "Performance comparison",
+      "expected_finding": "RAG = accurate & fast, Full = noisy & slow"
+    },
+    "experiment_4": {
+      "name": "Strategies",
+      "output": "Strategy performance table",
+      "expected_finding": "Select/Compress/Write provide different solutions"
+    }
+  },
+
+  "dependencies_graph": {
+    "phase_1_setup": [],
+    "phase_2_model_interface": ["phase_1_setup"],
+    "phase_3_generators": ["phase_1_setup"],
+    "phase_4_rag_components": ["phase_1_setup"],
+    "phase_5_experiments": ["phase_2_model_interface", "phase_3_generators", "phase_4_rag_components"],
+    "phase_6_analysis": ["phase_1_setup"],
+    "phase_7_main_entry": ["phase_5_experiments", "phase_6_analysis"],
+    "phase_8_testing": ["phase_3_generators", "phase_4_rag_components", "phase_6_analysis"],
+    "phase_9_finalization": ["phase_7_main_entry", "phase_8_testing"]
+  },
+
+  "critical_path": [
+    "1.1 -> 1.7 -> 2.1 -> 2.2 -> 2.3",
+    "3.1 -> 3.2",
+    "4.1 -> 4.2 -> 4.3",
+    "5.1 -> 5.2/5.3/5.4/5.5 -> 5.6",
+    "6.1 -> 6.2 -> 6.3",
+    "7.1 -> 8.1/8.2/8.3 -> 9.1 -> 9.2 -> 9.3"
+  ]
+}

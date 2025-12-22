@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שקף 09: Prompt Engineering vs Context Engineering</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #C85450 0%, #D4A574 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .slide {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            padding: 3rem;
+            max-width: 1400px;
+            width: 100%;
+            min-height: 600px;
+        }
+        .slide-header {
+            border-bottom: 3px solid #C85450;
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .slide-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1e293b;
+            text-align: right;
+            margin-bottom: 0.5rem;
+        }
+        .slide-body {
+            display: flex;
+            gap: 2rem;
+            align-items: start;
+        }
+        .content {
+            width: 65%;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #334155;
+        }
+        .image-container {
+            width: 35%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .highlight-box {
+            background: #FEF2F2;
+            border-left: 4px solid #C85450;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+        }
+        .success-box {
+            background: #FEF9E7;
+            border-left: 4px solid #D4A574;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+        }
+        .warning-box {
+            background: #FEF3C7;
+            border-left: 4px solid #F59E0B;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+        }
+        .nav-bar {
+            background: white;
+            padding: 1.5rem 3rem;
+            box-shadow: 0 -4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-btn {
+            padding: 0.75rem 2rem;
+            font-size: 1.1rem;
+            border: 2px solid #C85450;
+            background: white;
+            color: #C85450;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .nav-btn:hover {
+            background: #C85450;
+            color: white;
+        }
+        .nav-btn.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        .home-btn {
+            background: #C85450;
+            color: white;
+            border: none;
+        }
+        .home-btn:hover {
+            background: #A84440;
+        }
+        .slide-counter {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #64748b;
+        }
+        h3 { font-size: 1.5rem; margin: 1rem 0 0.5rem; color: #1e293b; }
+        p { margin: 0.75rem 0; }
+        ul { margin: 1rem 0; padding-right: 2rem; }
+        ol { margin: 1rem 0; padding-right: 2rem; }
+        li { margin: 0.5rem 0; }
+        strong { color: #1e293b; }
+        .formula { text-align: center; margin: 1.5rem 0; font-size: 1.3rem; direction: ltr; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="slide">
+            <div class="slide-header">
+                <h1 class="slide-title">Prompt Engineering vs Context Engineering</h1>
+            </div>
+            <div class="slide-body">
+                <div class="content">
+                    
+<p>הבנת ההבדל בין <strong>Prompt Engineering</strong> ל-<strong>Context Engineering</strong> היא קריטית להצלחה עם סוכני AI.</p>
+
+<div class="comparison-table">
+    <table style="width: 100%; border-collapse: collapse;">
+        <tr style="background: linear-gradient(135deg, #C85450 0%, #D4A574 100%); color: white;">
+            <th style="padding: 1rem; text-align: right;">Prompt Engineering</th>
+            <th style="padding: 1rem; text-align: right;">Context Engineering</th>
+        </tr>
+        <tr>
+            <td style="padding: 1rem; border: 1px solid #ddd;"><strong>מה?</strong> איך לשאול</td>
+            <td style="padding: 1rem; border: 1px solid #ddd;"><strong>מה?</strong> מה לתת</td>
+        </tr>
+        <tr>
+            <td style="padding: 1rem; border: 1px solid #ddd;"><strong>מתי?</strong> משימה בודדת</td>
+            <td style="padding: 1rem; border: 1px solid #ddd;"><strong>מתי?</strong> סוכנים רב-צעדיים</td>
+        </tr>
+        <tr>
+            <td style="padding: 1rem; border: 1px solid #ddd;"><strong>גודל:</strong> מאות tokens</td>
+            <td style="padding: 1rem; border: 1px solid #ddd;"><strong>גודל:</strong> אלפי-מיליוני tokens</td>
+        </tr>
+        <tr>
+            <td style="padding: 1rem; border: 1px solid #ddd;"><strong>אופי:</strong> סטטי</td>
+            <td style="padding: 1rem; border: 1px solid #ddd;"><strong>אופי:</strong> דינמי, מתפתח</td>
+        </tr>
+    </table>
+</div>
+
+<div class="highlight-box">
+    <h3>Context Engineering = אמנות ניהול הזיכרון</h3>
+    <p>זה לא רק "לכתוב prompt טוב" - זה <strong>ארכיטקטורה</strong> שלמה:</p>
+    <ol style="padding-right: 2rem;">
+        <li><strong>מה להכניס?</strong> איזה מידע רלוונטי</li>
+        <li><strong>מתי להכניס?</strong> בצעד הנכון</li>
+        <li><strong>מה להוציא?</strong> איזה מידע לא רלוונטי עוד</li>
+        <li><strong>איך לדחוס?</strong> סיכום, סינון, עיבוד</li>
+    </ol>
+</div>
+
+<div class="success-box">
+    <h3>ארבע האסטרטגיות (בקרוב)</h3>
+    <p>בשקף הבא נציג את <strong>ארבע האסטרטגיות המרכזיות</strong> לניהול חלון הקשר:</p>
+    <ul>
+        <li><strong>WRITE</strong> - כתיבה חכמה</li>
+        <li><strong>SELECT</strong> - בחירה מדויקת</li>
+        <li><strong>COMPRESS</strong> - דחיסה יעילה</li>
+        <li><strong>ISOLATE</strong> - בידוד אסטרטגי</li>
+    </ul>
+</div>
+
+<p><strong>מקור:</strong> עמ' 30-31, פרק 3</p>
+
+                </div>
+                
+        <div class="image-container">
+            <img src="slide-02-context-window-concept.png" alt="Prompt Engineering vs Context Engineering">
+        </div>
+        
+            </div>
+        </div>
+    </div>
+    
+    <div class="nav-bar">
+        <a href="slide-08.html" class="nav-btn">
+            ← הקודם
+        </a>
+        <div style="display: flex; gap: 1.5rem; align-items: center;">
+            <span class="slide-counter">9 / 16</span>
+            <a href="index.html" class="nav-btn home-btn">🏠 תפריט ראשי</a>
+        </div>
+        <a href="slide-10.html" class="nav-btn">
+            הבא →
+        </a>
+    </div>
+    
+    <script>
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' && true) {
+                location.href = 'slide-08.html';
+            } else if (e.key === 'ArrowLeft' && true) {
+                location.href = 'slide-10.html';
+            } else if (e.key === 'Home' || e.key === 'Escape') {
+                location.href = 'index.html';
+            }
+        });
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof renderMathInElement !== 'undefined') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ]
+                });
+            }
+        });
+    </script>
+</body>
+</html>
