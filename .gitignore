@@ -35,6 +35,9 @@ wheels/
 *.key
 credentials.json
 
+# Claude Code settings (may contain secrets)
+.claude/
+
 # IDE
 .idea/
 .vscode/
