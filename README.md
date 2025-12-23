@@ -1,247 +1,407 @@
 # Context Windows in Practice - Lab Experiments
 
-LLM Context Window Empirical Research for AI Developer Expert Course.
+A comprehensive research project exploring how Large Language Models handle context windows in real-world scenarios. This project implements **4 rigorous experiments** to demonstrate critical phenomena in LLM context processing.
 
-## Overview
+## Visual Examples
 
-This project implements **4 rigorous experiments** to study LLM context window behaviors, producing professional visualizations, detailed analysis reports, and actionable prompt engineering rules.
+**Experiment 1: Needle in Haystack (Lost in the Middle)**
 
-| # | Experiment | Description | Duration |
-|---|------------|-------------|----------|
-| 1 | **Needle in Haystack** | Test accuracy by fact position (start/middle/end) | ~15 min |
-| 2 | **Context Window Size Impact** | Measure accuracy/latency vs document count | ~20 min |
-| 3 | **RAG Impact** | Compare Full Context vs RAG retrieval | ~25 min |
-| 4 | **Context Engineering Strategies** | Test Select, Compress, Write strategies | ~30 min |
+![Experiment 1 Results](results/graphs/exp1_needle_in_haystack_accuracy_by_position.png)
 
-## Key Features
+**Experiment 2: Context Window Size Impact**
 
-- **Multi-Model Support**: Run experiments with Claude, Gemini, Ollama, or mock backend
-- **Professional Visualizations**: Publication-quality graphs with seaborn/matplotlib
-- **Detailed Explanations**: Comprehensive analysis of each experiment's findings
-- **Prompt Engineering Rules**: Actionable rules derived from empirical results
-- **Statistical Analysis**: Confidence intervals, comparisons, threshold detection
+![Experiment 2 Accuracy](results/graphs/exp2_context_size_accuracy_vs_size.png)
 
-## Key Phenomena Studied
+![Experiment 2 Latency](results/graphs/exp2_context_size_latency_vs_size.png)
 
-1. **Lost in the Middle** - Information in the middle of context is harder to retrieve
-2. **Context Accumulation Problem** - Accuracy degrades as context grows
+**Experiment 3: RAG vs Full Context**
 
-## Setup
+![Experiment 3 Results](results/graphs/exp3_rag_impact_performance_comparison.png)
 
-### Prerequisites
+**Experiment 4: Context Engineering Strategies**
 
-- Python 3.10+
-- UV package manager (recommended)
+![Experiment 4 Results](results/graphs/exp4_strategies_strategy_performance.png)
 
-### Installation
+---
 
-```bash
-# Clone the repository
-git clone <repository-url>
-cd L22
+## Research Questions
 
-# Create virtual environment with UV
-uv venv
-source .venv/bin/activate  # Linux/macOS
-# or
-.venv\Scripts\activate  # Windows
+This lab investigates four fundamental research questions about LLM context window behavior:
 
-# Install dependencies
-uv pip install -r requirements.txt
+### RQ1: Does fact position (start/middle/end) significantly affect retrieval accuracy in long contexts?
 
-# Copy environment template
-cp .env.example .env
-# Edit .env with your API keys if using API backends
-```
+**Hypothesis**: LLMs exhibit the "Lost in the Middle" phenomenon, where information placed in the middle of long contexts is retrieved less accurately than information at the beginning or end.
 
-### API Keys Setup
+**Rationale**: Understanding position bias helps explain why RAG systems should prioritize relevant information placement and why context ordering matters in production systems.
 
-For Claude backend (Claude Code environment):
-```bash
-export ANTHROPIC_API_KEY="your-api-key"
-```
+### RQ2: How does context window size (measured in number of documents) impact model accuracy and latency?
 
-For Gemini backend (Gemini CLI environment):
-```bash
-export GOOGLE_API_KEY="your-api-key"
-```
+**Hypothesis**: As context size increases, both accuracy degrades and latency increases due to:
+- Increased noise and irrelevant information
+- Higher computational cost for processing larger contexts
+- Attention dilution across more tokens
 
-### Using Ollama (Local LLM)
+**Rationale**: Quantifying this relationship helps determine optimal context sizes and guides decisions about when to use context compression or retrieval strategies.
 
-For local LLM inference:
+### RQ3: Does RAG (Retrieval-Augmented Generation) outperform full context approaches for document Q&A?
 
-```bash
-# Install Ollama from https://ollama.ai
-ollama pull llama2
-```
+**Hypothesis**: RAG will demonstrate higher accuracy and lower latency compared to full context approaches when dealing with large document sets (>5 documents).
 
-## Usage
+**Rationale**: Understanding the trade-offs between RAG and full context helps architects design efficient LLM applications.
 
-### Run All Experiments
+### RQ4: Which context engineering strategy (Select, Compress, Write) is most effective for different task types?
 
-```bash
-python main.py
-```
+**Hypothesis**: Different strategies excel for different use cases:
+- **SELECT**: Best for document Q&A and search applications
+- **COMPRESS**: Best for long conversations and summarization
+- **WRITE**: Best for structured outputs and multi-step agents
 
-### Run Specific Experiment
+**Rationale**: Matching strategy to task type optimizes both accuracy and efficiency.
 
-```bash
-python main.py --experiment 1  # Run only Experiment 1
-python main.py --experiment 2  # Run only Experiment 2
-python main.py --experiment 3  # Run only Experiment 3
-python main.py --experiment 4  # Run only Experiment 4
-```
+---
 
-### Choose Backend
+## Testing Methodology
 
-```bash
-python main.py --backend mock    # Use mock model (default, for testing)
-python main.py --backend ollama  # Use local Ollama model
-python main.py --backend claude  # Use Claude API (requires ANTHROPIC_API_KEY)
-python main.py --backend gemini  # Use Gemini API (requires GOOGLE_API_KEY)
-```
+### Experiment 1: Needle in Haystack (Lost in the Middle)
 
-### Verbose Output
+**Objective**: Test RQ1 by measuring accuracy as a function of fact position.
 
-```bash
-python main.py --verbose  # Enable detailed logging
-```
+**Methodology**:
+1. **Document Generation**: Generate synthetic documents containing realistic Hebrew business text
+2. **Fact Embedding**: Embed a critical fact at three different positions:
+   - **Start**: First 10% of the document
+   - **Middle**: Middle region of the document (50%)
+   - **End**: Last 10% of the document (95%)
+3. **Querying**: Concatenate all documents into a single context and query the LLM
+4. **Evaluation**: Use keyword-based matching to determine if the LLM correctly retrieved the fact
+5. **Repetition**: Run 3 repetitions per position for statistical validity
+6. **Analysis**: Calculate mean accuracy and standard deviation for each position
 
-### Run Tests
+**Metrics**:
+- Accuracy by Position (%)
+- Input Tokens
+- Latency (ms)
 
-```bash
-pytest tests/ -v
-```
+**Expected Outcomes**:
+- High accuracy (~80-100%) for facts at start and end positions
+- Low accuracy (~40-60%) for facts in the middle position
+- Graph showing clear "U-shape" pattern
+
+---
+
+### Experiment 2: Context Window Size Impact
+
+**Objective**: Test RQ2 by measuring performance degradation as context grows.
+
+**Methodology**:
+1. **Document Pool**: Generate multiple documents with embedded facts
+2. **Variable Context Sizes**: Test with 2, 5, 10, 20, and 50 documents
+3. **Querying**: For each size, concatenate N documents and query for the embedded fact
+4. **Measurement**: Track accuracy, latency, and token usage
+5. **Repetition**: Run 3 repetitions per context size
+6. **Analysis**: Calculate mean metrics for each context size
+
+**Metrics**:
+- Accuracy (%)
+- Latency (ms)
+- Input Tokens
+- Output Tokens
+
+**Expected Outcomes**:
+- Decreasing accuracy as context size increases
+- Increasing latency as context size increases
+- Linear increase in input tokens with document count
+
+---
+
+### Experiment 3: RAG Impact
+
+**Objective**: Test RQ3 by comparing Full Context vs RAG retrieval approaches.
+
+**Methodology**:
+1. **Document Pool**: Generate 20 documents with embedded facts
+2. **Full Context**: Pass all documents to the LLM as context
+3. **RAG Approach**: Use vector similarity search (ChromaDB) to retrieve top-k relevant documents
+4. **Comparison**: Measure accuracy and latency for both approaches
+5. **Repetition**: Run 3 repetitions for statistical validity
+
+**Metrics**:
+- Accuracy (%)
+- Latency (ms)
+- Retrieved document relevance
+
+**Expected Outcomes**:
+- RAG shows higher accuracy due to focused, relevant context
+- RAG shows lower latency due to smaller context size
+
+---
+
+### Experiment 4: Context Engineering Strategies
+
+**Objective**: Test RQ4 by comparing different context management strategies.
+
+**Strategies Tested**:
+1. **SELECT**: Pre-filter and select only relevant documents using similarity search
+2. **COMPRESS**: Summarize or compress long contexts before querying
+3. **WRITE**: Structure output in predefined format for multi-step reasoning
+
+**Methodology**:
+1. Generate test cases for each strategy
+2. Apply each strategy to the same underlying task
+3. Measure accuracy, latency, and output quality
+4. Compare results across strategies
+
+---
 
 ## Project Structure
 
 ```
 L22/
-├── main.py                    # Entry point
-├── requirements.txt           # Dependencies
-├── .env.example              # Environment template
-├── .gitignore                # Git ignore rules
+├── main.py                          # Entry point - run all experiments
+├── requirements.txt                 # Python dependencies
+├── .env.example                     # Environment template
+├── .gitignore                       # Git ignore rules
+├── README.md                        # This documentation
 │
-├── src/                      # Source code
-│   ├── experiments/          # 4 experiment implementations
+├── src/                             # Source code
+│   ├── experiments/                 # 4 experiment implementations
+│   │   ├── base_experiment.py       # Base class for experiments
 │   │   ├── exp1_needle_in_haystack.py
 │   │   ├── exp2_context_size.py
 │   │   ├── exp3_rag_impact.py
 │   │   └── exp4_strategies.py
-│   ├── generators/           # Test data generators
-│   ├── models/               # LLM interfaces (Claude, Gemini, Ollama)
-│   ├── rag/                  # RAG components (ChromaDB)
-│   ├── analysis/             # Statistics, visualization, explanations
-│   └── utils/                # Config, logging, helpers
+│   │
+│   ├── models/                      # LLM interfaces
+│   │   ├── base_model.py            # Abstract base model
+│   │   ├── llm_interface.py         # Ollama, Mock implementations
+│   │   ├── claude_model.py          # Claude API integration
+│   │   └── gemini_model.py          # Gemini API integration
+│   │
+│   ├── generators/                  # Test data generation
+│   │   └── document_generator.py    # Hebrew document generation
+│   │
+│   ├── rag/                         # RAG components
+│   │   ├── embeddings.py            # Sentence transformer embeddings
+│   │   └── vector_store.py          # ChromaDB vector store
+│   │
+│   ├── analysis/                    # Results analysis
+│   │   ├── statistics.py            # Statistical functions
+│   │   ├── visualizations.py        # Graph generation
+│   │   └── explanations.py          # Detailed explanations
+│   │
+│   └── utils/                       # Utilities
+│       ├── config.py                # Configuration management
+│       ├── logger.py                # Ring buffer logging
+│       └── helpers.py               # Helper functions
 │
-├── results/                  # Output files
-│   ├── experiments/          # JSON results + full_report.txt
-│   └── graphs/              # PNG visualizations
+├── results/                         # Output files
+│   ├── experiments/                 # JSON results + full_report.txt
+│   └── graphs/                      # PNG visualizations
 │
-├── tests/                   # Unit tests
-└── docs/                    # Documentation
-    └── requirements/        # PRD and tasks
+├── tests/                           # Unit tests
+└── docs/                            # Documentation
+    └── requirements/                # PRD, tasks, guidelines
 ```
 
-## Supported Models
+---
 
-| Backend | Model | Environment | API Key |
-|---------|-------|-------------|---------|
-| `mock` | Mock Model | Any | None |
-| `ollama` | Llama 2 (default) | Local | None |
-| `claude` | Claude 3 Haiku | Claude Code | ANTHROPIC_API_KEY |
-| `gemini` | Gemini 1.5 Flash | Gemini CLI | GOOGLE_API_KEY |
+## Setup Instructions
 
-## Expected Results
+### Prerequisites
 
-### Experiment 1: Needle in Haystack
-- **Start position**: ~95% accuracy
-- **Middle position**: ~60% accuracy (Lost in the Middle effect)
-- **End position**: ~95% accuracy
+- **Python 3.10+** installed on your system
+- **UV package manager** (recommended) or pip
+- **API Key** for your chosen backend
 
-### Experiment 2: Context Size Impact
-- Accuracy decreases linearly with document count
-- Latency increases with context size
-- Optimal context: 5-10 documents
+### Installation Steps
 
-### Experiment 3: RAG Impact
-- **RAG**: Higher accuracy, lower latency
-- **Full Context**: Lower accuracy, higher latency
-- RAG wins at >5 documents
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/hadarwayn/L22-Context-Windows-in-Practice-Lab-Experiments.git
+   cd L22-Context-Windows-in-Practice-Lab-Experiments
+   ```
 
-### Experiment 4: Strategies
-- **Select**: Best for document Q&A
-- **Compress**: Best for long conversations
-- **Write**: Best for multi-step agents
+2. **Create virtual environment**:
+   ```bash
+   uv venv
+   .venv\Scripts\activate     # Windows
+   source .venv/bin/activate  # Linux/macOS
+   ```
+
+3. **Install dependencies**:
+   ```bash
+   uv pip install -r requirements.txt
+   ```
+
+4. **Configure API keys**:
+   ```bash
+   # For Claude
+   set ANTHROPIC_API_KEY=your-api-key    # Windows
+   export ANTHROPIC_API_KEY="your-key"   # Linux/macOS
+
+   # For Gemini
+   set GOOGLE_API_KEY=your-api-key       # Windows
+   export GOOGLE_API_KEY="your-key"      # Linux/macOS
+   ```
+
+---
+
+## Usage Instructions
+
+### Run All Experiments
+
+```bash
+python main.py --backend mock     # Test mode (no API needed)
+python main.py --backend gemini   # Gemini API
+python main.py --backend claude   # Claude API
+python main.py --backend ollama   # Local Ollama
+```
+
+### Run Specific Experiment
+
+```bash
+python main.py --experiment 1     # Needle in Haystack
+python main.py --experiment 2     # Context Size Impact
+python main.py --experiment 3     # RAG Impact
+python main.py --experiment 4     # Context Strategies
+```
+
+### Run Unit Tests
+
+```bash
+pytest tests/ -v
+```
+
+---
 
 ## Output Files
 
-After running experiments:
+### Graphs (results/graphs/)
 
-- `results/experiments/exp1_*.json` - Raw experiment data
-- `results/experiments/full_report.txt` - Detailed analysis report
-- `results/graphs/exp1_accuracy_by_position.png` - Position accuracy chart
-- `results/graphs/exp2_accuracy_vs_size.png` - Size impact chart
-- `results/graphs/exp3_performance_comparison.png` - RAG comparison
-- `results/graphs/exp4_strategy_performance.png` - Strategy comparison
+| File | Description |
+|------|-------------|
+| `exp1_*_accuracy_by_position.png` | Accuracy by position (start/middle/end) |
+| `exp2_*_accuracy_vs_size.png` | Accuracy vs document count |
+| `exp2_*_latency_vs_size.png` | Latency vs document count |
+| `exp3_*_performance_comparison.png` | Full Context vs RAG |
+| `exp4_*_strategy_performance.png` | Strategy comparison |
+
+### Results Data (results/experiments/)
+
+- `exp*_*.json` - Raw experiment data with timestamps
+- `full_report.txt` - Comprehensive analysis with explanations and derived rules
+
+---
+
+## Expected Results
+
+### Experiment 1: Lost in the Middle
+
+| Position | Expected Accuracy |
+|----------|-------------------|
+| START    | 85-100% |
+| MIDDLE   | 40-60% |
+| END      | 85-100% |
+
+### Experiment 2: Context Size Impact
+
+| Documents | Expected Accuracy | Expected Latency |
+|-----------|-------------------|------------------|
+| 2         | 90-100%           | 1-3s |
+| 5         | 80-90%            | 3-5s |
+| 10        | 60-80%            | 5-10s |
+| 20        | 40-60%            | 10-20s |
+| 50        | 20-40%            | 20-40s |
+
+### Experiment 3: RAG vs Full Context
+
+| Method | Expected Accuracy | Expected Latency |
+|--------|-------------------|------------------|
+| Full Context | 40-60% | 15-30s |
+| RAG | 70-90% | 3-8s |
+
+---
 
 ## Prompt Engineering Rules (Derived from Experiments)
 
-Based on empirical findings, these rules optimize LLM interactions:
-
 ### Rule 1: Position Critical Information Strategically
-**Source**: Experiment 1 (Needle in Haystack)
+**Source**: Experiment 1
 - Place key facts at START or END of context
 - Avoid burying important information in the middle
-- Use explicit markers for critical sections
 
 ### Rule 2: Limit Context Size for Accuracy
-**Source**: Experiment 2 (Context Size Impact)
-- More context ≠ better results
+**Source**: Experiment 2
+- More context does NOT mean better results
 - Filter to relevant documents only
-- Monitor token usage vs accuracy tradeoff
 
 ### Rule 3: Use RAG for Large Document Sets
-**Source**: Experiment 3 (RAG Impact)
+**Source**: Experiment 3
 - Implement vector search for >5 documents
 - Pre-filter before adding to prompt
-- Balance retrieval depth vs accuracy
 
 ### Rule 4: Match Strategy to Task Type
-**Source**: Experiment 4 (Strategies)
+**Source**: Experiment 4
 - Q&A tasks: Use SELECT strategy
 - Summaries: Use COMPRESS strategy
 - Agents: Use WRITE strategy
 
-### Rule 5: Monitor and Optimize Token Usage
+### Rule 5: Monitor Token Usage
 **Source**: All experiments
 - Track tokens per request
 - Set appropriate max_tokens limits
-- Consider cost vs quality tradeoffs
 
-## Code Files Summary
+---
 
-| File | Lines | Description |
-|------|-------|-------------|
-| `main.py` | ~150 | Main entry point |
-| `src/experiments/exp1_*.py` | ~95 | Experiment 1 |
-| `src/experiments/exp2_*.py` | ~100 | Experiment 2 |
-| `src/experiments/exp3_*.py` | ~115 | Experiment 3 |
-| `src/experiments/exp4_*.py` | ~130 | Experiment 4 |
-| `src/models/claude_model.py` | ~95 | Claude API interface |
-| `src/models/gemini_model.py` | ~95 | Gemini API interface |
-| `src/generators/document_generator.py` | ~140 | Document generation |
-| `src/rag/vector_store.py` | ~100 | ChromaDB integration |
-| `src/analysis/statistics.py` | ~110 | Statistical functions |
-| `src/analysis/visualizations.py` | ~130 | Graph generation |
-| `src/analysis/explanations.py` | ~150 | Detailed explanations |
+## Supported Models
 
-All files are under 150 lines as per guidelines.
+| Backend | Model | API Key Required |
+|---------|-------|------------------|
+| `mock` | Mock Model | No |
+| `ollama` | Llama 2 | No |
+| `claude` | Claude 3 Haiku | ANTHROPIC_API_KEY |
+| `gemini` | Gemini 2.0 Flash | GOOGLE_API_KEY |
 
-## License
+---
 
-This project is part of the AI Developer Expert Course.
+## Cost Estimation
 
-## Author
+| Experiment | Queries | Avg Tokens | Est. Cost |
+|------------|---------|------------|-----------|
+| Experiment 1 | ~9 | 10K | ~$0.02 |
+| Experiment 2 | ~15 | 30K | ~$0.05 |
+| Experiment 3 | ~6 | 20K | ~$0.03 |
+| Experiment 4 | ~30 | 15K | ~$0.05 |
+| **Total** | ~60 | - | **~$0.15** |
 
-Context Windows Lab - December 2025
+---
+
+## Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| API key not found | Set environment variable or check .env file |
+| API timeout | Check internet connection, verify API key has credits |
+| ChromaDB slow first run | Embedding model download (~80MB), one-time only |
+| Out of memory | Reduce document count in experiments |
+
+---
+
+## References
+
+1. Liu et al. (2023). "Lost in the Middle: How Language Models Use Long Contexts"
+2. Anthropic Claude API Documentation: https://docs.anthropic.com/
+3. Google Gemini API Documentation: https://ai.google.dev/docs
+4. ChromaDB Documentation: https://docs.trychroma.com/
+
+---
+
+## License & Attribution
+
+**Course**: AI Developer Expert Course
+**Lab**: Context Windows in Practice
+**Version**: 1.0
+**Date**: December 2025
+
+---
+
+**Happy Experimenting!**

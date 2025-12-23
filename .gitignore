@@ -38,6 +38,9 @@ credentials.json
 # Claude Code settings (may contain secrets)
 .claude/
 
+# Reference files (not part of project)
+good-reference/
+
 # IDE
 .idea/
 .vscode/
