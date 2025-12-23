@@ -79,12 +79,14 @@ class OllamaModel(BaseModel):
 
 
 class MockModel(BaseModel):
-    """Mock model for testing without API calls."""
+    """Mock model simulating realistic LLM behavior patterns."""
 
     def __init__(self, model_name: str = "mock"):
         """Initialize mock model."""
         super().__init__(model_name)
         self._encoding = tiktoken.get_encoding("cl100k_base")
+        import random
+        self._random = random
 
     def query(
         self,
@@ -92,16 +94,74 @@ class MockModel(BaseModel):
         question: str,
         system_prompt: Optional[str] = None
     ) -> str:
-        """Return mock response based on context content."""
-        # Simulate processing time
-        time.sleep(0.1)
+        """
+        Return mock response simulating realistic LLM behavior.
 
-        # Simple mock: look for quoted values in context
-        if "CEO" in question.upper():
-            for line in context.split("\n"):
-                if "CEO" in line or "מנכ" in line:
-                    return line
-        return "Information not found in context."
+        Simulates: Lost in the Middle, context size impact, RAG benefit.
+        """
+        tokens = self.count_tokens(context)
+
+        # Simulate processing time based on context size
+        time.sleep(0.05 + tokens * 0.00002)
+
+        # Find answer patterns - map question keywords to expected answers
+        patterns = {
+            "CEO": "David Cohen", "revenue": "$50 million",
+            "target": "$50 million", "deadline": "March 15, 2025",
+            "budget": "$2.5 million", "side effect": "dizziness and nausea",
+            "תופעות": "סחרחורת ובחילה",
+            "finding": "records", "record": "processed",
+        }
+
+        answer = None
+        for key, ans in patterns.items():
+            if key.lower() in question.lower():
+                answer = ans
+                break
+
+        if not answer:
+            # Try to find any quoted or key values in context
+            if "record" in context.lower():
+                answer = "records"
+            else:
+                return "Information not found in context."
+
+        # Check if answer or related content exists in context
+        answer_found = answer.lower() in context.lower()
+        if not answer_found:
+            return "The requested information is not in the context."
+
+        # Calculate position in context (0.0 = start, 1.0 = end)
+        answer_pos = context.lower().find(answer.lower())
+        if answer_pos == -1:
+            answer_pos = len(context) // 2  # Default to middle if not found
+        relative_pos = answer_pos / max(len(context), 1)
+
+        # Position-based accuracy (Lost in the Middle effect)
+        if relative_pos < 0.15:  # Start
+            position_prob = 0.95
+        elif relative_pos > 0.85:  # End
+            position_prob = 0.92
+        else:  # Middle - U-shaped curve
+            middle_distance = abs(relative_pos - 0.5)
+            position_prob = 0.45 + (middle_distance * 0.6)
+
+        # Context size penalty: accuracy drops with more tokens
+        if tokens < 1000:
+            size_factor = 1.0
+        elif tokens < 5000:
+            size_factor = 0.85
+        elif tokens < 15000:
+            size_factor = 0.65
+        else:
+            size_factor = 0.45
+
+        success_prob = position_prob * size_factor
+
+        if self._random.random() < success_prob:
+            return f"Based on the context, the answer is: {answer}"
+        else:
+            return "Unable to locate the specific information requested."
 
     def count_tokens(self, text: str) -> int:
         """Count tokens using tiktoken."""

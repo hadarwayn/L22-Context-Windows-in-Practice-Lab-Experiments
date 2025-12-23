@@ -1,0 +1,83 @@
+{
+  "experiment_name": "exp1_needle_in_haystack",
+  "description": "Test information retrieval accuracy by position (start/middle/end)",
+  "timestamp": "2025-12-22_21-49-46",
+  "results": {
+    "trials": {
+      "start": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 110.78079999424517,
+          "response_preview": "The company CEO is David Cohen. Strategic partnerships continue to drive organizational development."
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 107.15799999888986,
+          "response_preview": "The company CEO is David Cohen. Market analysis indicates strong demand for innovative solutions. Cu"
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 108.26410003937781,
+          "response_preview": "The company CEO is David Cohen. Market analysis indicates strong demand for innovative solutions. Em"
+        }
+      ],
+      "middle": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 109.76159997517243,
+          "response_preview": "Operational efficiency has been enhanced through process optimization. Employee engagement surveys r"
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 108.09739999240264,
+          "response_preview": "The management team is focused on sustainable business practices. Operational efficiency has been en"
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 108.0839000060223,
+          "response_preview": "Customer satisfaction metrics have improved substantially this period. Customer satisfaction metrics"
+        }
+      ],
+      "end": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 109.30820001522079,
+          "response_preview": "Market analysis indicates strong demand for innovative solutions. Investment in research and develop"
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 108.87009999714792,
+          "response_preview": "Strategic partnerships continue to drive organizational development. Customer satisfaction metrics h"
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 107.32509999070317,
+          "response_preview": "The management team is focused on sustainable business practices. The quarterly financial results sh"
+        }
+      ]
+    },
+    "summary": {
+      "start": {
+        "accuracy": 100.0,
+        "avg_latency_ms": 108.73430001083761
+      },
+      "middle": {
+        "accuracy": 100.0,
+        "avg_latency_ms": 108.64763332453246
+      },
+      "end": {
+        "accuracy": 100.0,
+        "avg_latency_ms": 108.50113333435729
+      }
+    }
+  }
+}

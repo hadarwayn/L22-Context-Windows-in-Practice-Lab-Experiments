@@ -12,7 +12,9 @@ import matplotlib.pyplot as plt
 from src.experiments.base_experiment import BaseExperiment
 from src.generators import generate_document_set
 from src.models import get_model
-from src.utils.config import EXP2_DOCUMENT_COUNTS, TRIALS_PER_CONDITION, GRAPH_DPI
+from src.utils.config import (
+    EXP2_DOCUMENT_COUNTS, EXP2_WORDS_PER_DOC, TRIALS_PER_CONDITION, GRAPH_DPI
+)
 from src.utils.helpers import Timer, count_tokens
 
 
@@ -37,12 +39,16 @@ class ContextSizeExperiment(BaseExperiment):
             self.logger.info(f"Testing with {doc_count} documents...")
 
             for trial in range(TRIALS_PER_CONDITION):
-                # Generate documents
-                docs = generate_document_set(doc_count - 1, 200, "business")
+                # Generate documents with configured word count
+                from src.generators import generate_document
+                docs = generate_document_set(
+                    doc_count - 1, EXP2_WORDS_PER_DOC, "business"
+                )
 
                 # Add document with fact in the middle
-                from src.generators import generate_document
-                fact_doc = generate_document(200, self.fact, "middle", "business")
+                fact_doc = generate_document(
+                    EXP2_WORDS_PER_DOC, self.fact, "middle", "business"
+                )
                 docs.insert(len(docs) // 2, fact_doc)
 
                 # Concatenate all documents

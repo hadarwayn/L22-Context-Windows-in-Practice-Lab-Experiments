@@ -1,0 +1,212 @@
+{
+  "experiment_name": "exp4_strategies",
+  "description": "Compare Select, Compress, Write strategies",
+  "timestamp": "2025-12-23_19-30-30",
+  "results": {
+    "trials": {
+      "select": [
+        {
+          "action": 1,
+          "correct": false,
+          "latency_ms": 321.3786999695003,
+          "context_tokens": 130
+        },
+        {
+          "action": 2,
+          "correct": false,
+          "latency_ms": 394.95099999476224,
+          "context_tokens": 252
+        },
+        {
+          "action": 3,
+          "correct": false,
+          "latency_ms": 345.16329993493855,
+          "context_tokens": 372
+        },
+        {
+          "action": 4,
+          "correct": false,
+          "latency_ms": 362.4678000342101,
+          "context_tokens": 499
+        },
+        {
+          "action": 5,
+          "correct": false,
+          "latency_ms": 362.36060003284365,
+          "context_tokens": 621
+        },
+        {
+          "action": 6,
+          "correct": false,
+          "latency_ms": 496.68120010755956,
+          "context_tokens": 622
+        },
+        {
+          "action": 7,
+          "correct": false,
+          "latency_ms": 444.9748999904841,
+          "context_tokens": 629
+        },
+        {
+          "action": 8,
+          "correct": false,
+          "latency_ms": 511.56000001356006,
+          "context_tokens": 629
+        },
+        {
+          "action": 9,
+          "correct": false,
+          "latency_ms": 529.1903000324965,
+          "context_tokens": 629
+        },
+        {
+          "action": 10,
+          "correct": false,
+          "latency_ms": 635.500599979423,
+          "context_tokens": 640
+        }
+      ],
+      "compress": [
+        {
+          "action": 1,
+          "correct": false,
+          "latency_ms": 180.08930003270507,
+          "context_tokens": 137
+        },
+        {
+          "action": 2,
+          "correct": false,
+          "latency_ms": 190.27559994719923,
+          "context_tokens": 258
+        },
+        {
+          "action": 3,
+          "correct": false,
+          "latency_ms": 190.03389996942133,
+          "context_tokens": 381
+        },
+        {
+          "action": 4,
+          "correct": false,
+          "latency_ms": 212.7570000011474,
+          "context_tokens": 509
+        },
+        {
+          "action": 5,
+          "correct": false,
+          "latency_ms": 213.34599994588643,
+          "context_tokens": 630
+        },
+        {
+          "action": 6,
+          "correct": false,
+          "latency_ms": 249.5633999351412,
+          "context_tokens": 750
+        },
+        {
+          "action": 7,
+          "correct": false,
+          "latency_ms": 223.47219998482615,
+          "context_tokens": 884
+        },
+        {
+          "action": 8,
+          "correct": false,
+          "latency_ms": 210.69149998947978,
+          "context_tokens": 1004
+        },
+        {
+          "action": 9,
+          "correct": false,
+          "latency_ms": 265.1973000029102,
+          "context_tokens": 1128
+        },
+        {
+          "action": 10,
+          "correct": false,
+          "latency_ms": 205.13490005396307,
+          "context_tokens": 1259
+        }
+      ],
+      "write": [
+        {
+          "action": 1,
+          "correct": false,
+          "latency_ms": 197.82749994192272,
+          "context_tokens": 126
+        },
+        {
+          "action": 2,
+          "correct": false,
+          "latency_ms": 199.3963000131771,
+          "context_tokens": 126
+        },
+        {
+          "action": 3,
+          "correct": false,
+          "latency_ms": 168.0723000317812,
+          "context_tokens": 126
+        },
+        {
+          "action": 4,
+          "correct": false,
+          "latency_ms": 216.43030003178865,
+          "context_tokens": 250
+        },
+        {
+          "action": 5,
+          "correct": false,
+          "latency_ms": 215.0015999795869,
+          "context_tokens": 250
+        },
+        {
+          "action": 6,
+          "correct": false,
+          "latency_ms": 198.31789995077997,
+          "context_tokens": 250
+        },
+        {
+          "action": 7,
+          "correct": false,
+          "latency_ms": 195.07340004201978,
+          "context_tokens": 380
+        },
+        {
+          "action": 8,
+          "correct": false,
+          "latency_ms": 183.00019996240735,
+          "context_tokens": 380
+        },
+        {
+          "action": 9,
+          "correct": false,
+          "latency_ms": 180.73540006298572,
+          "context_tokens": 380
+        },
+        {
+          "action": 10,
+          "correct": false,
+          "latency_ms": 186.16919999476522,
+          "context_tokens": 506
+        }
+      ]
+    },
+    "summary": {
+      "select": {
+        "accuracy": 0.0,
+        "avg_latency_ms": 440.4228400089778,
+        "avg_tokens": 502.3
+      },
+      "compress": {
+        "accuracy": 0.0,
+        "avg_latency_ms": 214.05610998626798,
+        "avg_tokens": 694.0
+      },
+      "write": {
+        "accuracy": 0.0,
+        "avg_latency_ms": 194.00241000112146,
+        "avg_tokens": 277.4
+      }
+    }
+  }
+}

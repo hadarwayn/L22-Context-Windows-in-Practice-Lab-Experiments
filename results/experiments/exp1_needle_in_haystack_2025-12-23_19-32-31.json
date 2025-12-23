@@ -1,0 +1,83 @@
+{
+  "experiment_name": "exp1_needle_in_haystack",
+  "description": "Test information retrieval accuracy by position (start/middle/end)",
+  "timestamp": "2025-12-23_19-32-31",
+  "results": {
+    "trials": {
+      "start": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 103.51849999278784,
+          "response_preview": "The company CEO is David Cohen. The quarterly financial results showed significant growth across all"
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 107.24759998265654,
+          "response_preview": "The company CEO is David Cohen. Strategic partnerships continue to drive organizational development."
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 109.06990000512451,
+          "response_preview": "The company CEO is David Cohen. Operational efficiency has been enhanced through process optimizatio"
+        }
+      ],
+      "middle": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 106.89100006129593,
+          "response_preview": "The management team is focused on sustainable business practices. The management team is focused on "
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 106.47210001479834,
+          "response_preview": "Employee engagement surveys reveal positive workplace culture trends. The quarterly financial result"
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 108.48289995919913,
+          "response_preview": "Market analysis indicates strong demand for innovative solutions. Strategic partnerships continue to"
+        }
+      ],
+      "end": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 109.16700004599988,
+          "response_preview": "Investment in research and development remains a top priority. Market analysis indicates strong dema"
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 108.43640007078648,
+          "response_preview": "Strategic partnerships continue to drive organizational development. Operational efficiency has been"
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 109.10469992086291,
+          "response_preview": "The management team is focused on sustainable business practices. The quarterly financial results sh"
+        }
+      ]
+    },
+    "summary": {
+      "start": {
+        "accuracy": 100.0,
+        "avg_latency_ms": 106.61199999352296
+      },
+      "middle": {
+        "accuracy": 100.0,
+        "avg_latency_ms": 107.28200001176447
+      },
+      "end": {
+        "accuracy": 100.0,
+        "avg_latency_ms": 108.90270001254976
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "experiment_name": "exp1_needle_in_haystack",
+  "description": "Test information retrieval accuracy by position (start/middle/end)",
+  "timestamp": "2025-12-23_19-30-10",
+  "results": {
+    "trials": {
+      "start": [
+        {
+          "trial": 1,
+          "correct": false,
+          "latency_ms": 291.64419998414814,
+          "response_preview": "Error calling Gemini API: 400 Client Error: Bad Request for url: https://generativelanguage.googleap"
+        },
+        {
+          "trial": 2,
+          "correct": false,
+          "latency_ms": 224.6216000057757,
+          "response_preview": "Error calling Gemini API: 400 Client Error: Bad Request for url: https://generativelanguage.googleap"
+        },
+        {
+          "trial": 3,
+          "correct": false,
+          "latency_ms": 200.6937999976799,
+          "response_preview": "Error calling Gemini API: 400 Client Error: Bad Request for url: https://generativelanguage.googleap"
+        }
+      ],
+      "middle": [
+        {
+          "trial": 1,
+          "correct": false,
+          "latency_ms": 231.0437000123784,
+          "response_preview": "Error calling Gemini API: 400 Client Error: Bad Request for url: https://generativelanguage.googleap"
+        },
+        {
+          "trial": 2,
+          "correct": false,
+          "latency_ms": 169.5336999837309,
+          "response_preview": "Error calling Gemini API: 400 Client Error: Bad Request for url: https://generativelanguage.googleap"
+        },
+        {
+          "trial": 3,
+          "correct": false,
+          "latency_ms": 179.20600005891174,
+          "response_preview": "Error calling Gemini API: 400 Client Error: Bad Request for url: https://generativelanguage.googleap"
+        }
+      ],
+      "end": [
+        {
+          "trial": 1,
+          "correct": false,
+          "latency_ms": 181.59619998186827,
+          "response_preview": "Error calling Gemini API: 400 Client Error: Bad Request for url: https://generativelanguage.googleap"
+        },
+        {
+          "trial": 2,
+          "correct": false,
+          "latency_ms": 200.79509995412081,
+          "response_preview": "Error calling Gemini API: 400 Client Error: Bad Request for url: https://generativelanguage.googleap"
+        },
+        {
+          "trial": 3,
+          "correct": false,
+          "latency_ms": 201.3609999557957,
+          "response_preview": "Error calling Gemini API: 400 Client Error: Bad Request for url: https://generativelanguage.googleap"
+        }
+      ]
+    },
+    "summary": {
+      "start": {
+        "accuracy": 0.0,
+        "avg_latency_ms": 238.98653332920125
+      },
+      "middle": {
+        "accuracy": 0.0,
+        "avg_latency_ms": 193.2611333516737
+      },
+      "end": {
+        "accuracy": 0.0,
+        "avg_latency_ms": 194.58409996392825
+      }
+    }
+  }
+}

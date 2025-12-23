@@ -1,0 +1,83 @@
+{
+  "experiment_name": "exp1_needle_in_haystack",
+  "description": "Test information retrieval accuracy by position (start/middle/end)",
+  "timestamp": "2025-12-22_21-27-52",
+  "results": {
+    "trials": {
+      "start": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 101.65259998757392,
+          "response_preview": "The company CEO is David Cohen. Employee engagement surveys reveal positive workplace culture trends"
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 108.80129999713972,
+          "response_preview": "The company CEO is David Cohen. Strategic partnerships continue to drive organizational development."
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 108.30540000461042,
+          "response_preview": "The company CEO is David Cohen. Operational efficiency has been enhanced through process optimizatio"
+        }
+      ],
+      "middle": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 107.8737000352703,
+          "response_preview": "The quarterly financial results showed significant growth across all sectors. Customer satisfaction "
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 109.20480004278943,
+          "response_preview": "Market analysis indicates strong demand for innovative solutions. Market analysis indicates strong d"
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 108.70209999848157,
+          "response_preview": "Strategic partnerships continue to drive organizational development. Operational efficiency has been"
+        }
+      ],
+      "end": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 107.40530001930892,
+          "response_preview": "Market analysis indicates strong demand for innovative solutions. The management team is focused on "
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 108.91150002134964,
+          "response_preview": "Market analysis indicates strong demand for innovative solutions. Strategic partnerships continue to"
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 108.20229997625574,
+          "response_preview": "Market analysis indicates strong demand for innovative solutions. Market analysis indicates strong d"
+        }
+      ]
+    },
+    "summary": {
+      "start": {
+        "accuracy": 100.0,
+        "avg_latency_ms": 106.25309999644135
+      },
+      "middle": {
+        "accuracy": 100.0,
+        "avg_latency_ms": 108.5935333588471
+      },
+      "end": {
+        "accuracy": 100.0,
+        "avg_latency_ms": 108.17303333897144
+      }
+    }
+  }
+}

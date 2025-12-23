@@ -1,0 +1,346 @@
+{
+  "experiment_name": "exp2_context_size",
+  "description": "Measure accuracy and latency as document count increases",
+  "timestamp": "2025-12-23_19-54-07",
+  "results": {
+    "trials": {
+      "2": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 86.73620002809912,
+          "tokens_used": 1134
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 89.99669994227588,
+          "tokens_used": 1120
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 87.12399995420128,
+          "tokens_used": 1127
+        },
+        {
+          "trial": 4,
+          "correct": false,
+          "latency_ms": 89.2761000432074,
+          "tokens_used": 1130
+        },
+        {
+          "trial": 5,
+          "correct": false,
+          "latency_ms": 77.47679995372891,
+          "tokens_used": 1132
+        },
+        {
+          "trial": 6,
+          "correct": true,
+          "latency_ms": 76.14969997666776,
+          "tokens_used": 1135
+        },
+        {
+          "trial": 7,
+          "correct": true,
+          "latency_ms": 88.67760002613068,
+          "tokens_used": 1128
+        },
+        {
+          "trial": 8,
+          "correct": false,
+          "latency_ms": 89.92389997001737,
+          "tokens_used": 1127
+        },
+        {
+          "trial": 9,
+          "correct": false,
+          "latency_ms": 75.55509998928756,
+          "tokens_used": 1129
+        },
+        {
+          "trial": 10,
+          "correct": true,
+          "latency_ms": 74.5713000651449,
+          "tokens_used": 1122
+        }
+      ],
+      "5": [
+        {
+          "trial": 1,
+          "correct": false,
+          "latency_ms": 118.9088000683114,
+          "tokens_used": 2820
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 118.04319999646395,
+          "tokens_used": 2824
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 117.39170004148036,
+          "tokens_used": 2824
+        },
+        {
+          "trial": 4,
+          "correct": false,
+          "latency_ms": 115.76370010152459,
+          "tokens_used": 2822
+        },
+        {
+          "trial": 5,
+          "correct": true,
+          "latency_ms": 118.91429999377578,
+          "tokens_used": 2827
+        },
+        {
+          "trial": 6,
+          "correct": true,
+          "latency_ms": 119.18279994279146,
+          "tokens_used": 2831
+        },
+        {
+          "trial": 7,
+          "correct": true,
+          "latency_ms": 116.24130001291633,
+          "tokens_used": 2824
+        },
+        {
+          "trial": 8,
+          "correct": true,
+          "latency_ms": 119.59709995426238,
+          "tokens_used": 2812
+        },
+        {
+          "trial": 9,
+          "correct": true,
+          "latency_ms": 119.72660000901669,
+          "tokens_used": 2824
+        },
+        {
+          "trial": 10,
+          "correct": true,
+          "latency_ms": 122.92039999738336,
+          "tokens_used": 2825
+        }
+      ],
+      "10": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 177.30659991502762,
+          "tokens_used": 5638
+        },
+        {
+          "trial": 2,
+          "correct": false,
+          "latency_ms": 180.57610001415014,
+          "tokens_used": 5650
+        },
+        {
+          "trial": 3,
+          "correct": false,
+          "latency_ms": 190.83340000361204,
+          "tokens_used": 5644
+        },
+        {
+          "trial": 4,
+          "correct": false,
+          "latency_ms": 187.1668000239879,
+          "tokens_used": 5631
+        },
+        {
+          "trial": 5,
+          "correct": false,
+          "latency_ms": 177.13550000917166,
+          "tokens_used": 5643
+        },
+        {
+          "trial": 6,
+          "correct": true,
+          "latency_ms": 190.3844999615103,
+          "tokens_used": 5644
+        },
+        {
+          "trial": 7,
+          "correct": false,
+          "latency_ms": 176.79810000117868,
+          "tokens_used": 5649
+        },
+        {
+          "trial": 8,
+          "correct": false,
+          "latency_ms": 176.2311999918893,
+          "tokens_used": 5647
+        },
+        {
+          "trial": 9,
+          "correct": true,
+          "latency_ms": 180.1780000096187,
+          "tokens_used": 5633
+        },
+        {
+          "trial": 10,
+          "correct": false,
+          "latency_ms": 186.75530003383756,
+          "tokens_used": 5639
+        }
+      ],
+      "20": [
+        {
+          "trial": 1,
+          "correct": false,
+          "latency_ms": 317.2875000163913,
+          "tokens_used": 11288
+        },
+        {
+          "trial": 2,
+          "correct": false,
+          "latency_ms": 324.8427000362426,
+          "tokens_used": 11277
+        },
+        {
+          "trial": 3,
+          "correct": false,
+          "latency_ms": 309.03670005500317,
+          "tokens_used": 11276
+        },
+        {
+          "trial": 4,
+          "correct": true,
+          "latency_ms": 300.997499958612,
+          "tokens_used": 11290
+        },
+        {
+          "trial": 5,
+          "correct": false,
+          "latency_ms": 305.0910000456497,
+          "tokens_used": 11278
+        },
+        {
+          "trial": 6,
+          "correct": false,
+          "latency_ms": 308.43109998386353,
+          "tokens_used": 11283
+        },
+        {
+          "trial": 7,
+          "correct": false,
+          "latency_ms": 304.2565000941977,
+          "tokens_used": 11307
+        },
+        {
+          "trial": 8,
+          "correct": false,
+          "latency_ms": 304.403500049375,
+          "tokens_used": 11291
+        },
+        {
+          "trial": 9,
+          "correct": true,
+          "latency_ms": 306.40590004622936,
+          "tokens_used": 11284
+        },
+        {
+          "trial": 10,
+          "correct": false,
+          "latency_ms": 322.5985000608489,
+          "tokens_used": 11317
+        }
+      ],
+      "50": [
+        {
+          "trial": 1,
+          "correct": false,
+          "latency_ms": 665.3852999443188,
+          "tokens_used": 28217
+        },
+        {
+          "trial": 2,
+          "correct": false,
+          "latency_ms": 732.3663999559358,
+          "tokens_used": 28238
+        },
+        {
+          "trial": 3,
+          "correct": false,
+          "latency_ms": 670.9171999245882,
+          "tokens_used": 28194
+        },
+        {
+          "trial": 4,
+          "correct": false,
+          "latency_ms": 687.6154000638053,
+          "tokens_used": 28212
+        },
+        {
+          "trial": 5,
+          "correct": false,
+          "latency_ms": 660.7714999699965,
+          "tokens_used": 28180
+        },
+        {
+          "trial": 6,
+          "correct": true,
+          "latency_ms": 663.6113999411464,
+          "tokens_used": 28179
+        },
+        {
+          "trial": 7,
+          "correct": false,
+          "latency_ms": 649.4062000419945,
+          "tokens_used": 28218
+        },
+        {
+          "trial": 8,
+          "correct": false,
+          "latency_ms": 676.5390000073239,
+          "tokens_used": 28207
+        },
+        {
+          "trial": 9,
+          "correct": false,
+          "latency_ms": 641.6600000811741,
+          "tokens_used": 28185
+        },
+        {
+          "trial": 10,
+          "correct": false,
+          "latency_ms": 653.0638999538496,
+          "tokens_used": 28217
+        }
+      ]
+    },
+    "summary": {
+      "2": {
+        "accuracy": 60.0,
+        "avg_latency_ms": 83.54873999487609,
+        "avg_tokens": 1128.4
+      },
+      "5": {
+        "accuracy": 80.0,
+        "avg_latency_ms": 118.66899001179263,
+        "avg_tokens": 2823.3
+      },
+      "10": {
+        "accuracy": 30.0,
+        "avg_latency_ms": 182.3365499963984,
+        "avg_tokens": 5641.8
+      },
+      "20": {
+        "accuracy": 20.0,
+        "avg_latency_ms": 310.3350900346413,
+        "avg_tokens": 11289.1
+      },
+      "50": {
+        "accuracy": 10.0,
+        "avg_latency_ms": 670.1336299884133,
+        "avg_tokens": 28204.7
+      }
+    }
+  }
+}

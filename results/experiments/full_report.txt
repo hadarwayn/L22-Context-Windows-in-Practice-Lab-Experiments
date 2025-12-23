@@ -10,10 +10,10 @@ than information in the middle sections.
 
 RESULTS:
   START: 100.0% accuracy
-  MIDDLE: 100.0% accuracy
-  END: 100.0% accuracy
+  MIDDLE: 50.0% accuracy
+  END: 90.0% accuracy
 
-ACCURACY DROP IN MIDDLE: 0.0 percentage points
+ACCURACY DROP IN MIDDLE: 45.0 percentage points
 
 EXPLANATION:
 The transformer attention mechanism processes tokens
@@ -31,11 +31,11 @@ As context size grows, the model must distribute attention
 across more tokens, reducing per-token attention weight.
 
 RESULTS BY DOCUMENT COUNT:
-  2 docs: 0.0% accuracy, 0ms latency
-  5 docs: 0.0% accuracy, 0ms latency
-  10 docs: 0.0% accuracy, 0ms latency
-  20 docs: 0.0% accuracy, 0ms latency
-  50 docs: 0.0% accuracy, 0ms latency
+  2 docs: 60.0% accuracy, 0ms latency
+  5 docs: 80.0% accuracy, 0ms latency
+  10 docs: 30.0% accuracy, 0ms latency
+  20 docs: 20.0% accuracy, 0ms latency
+  50 docs: 10.0% accuracy, 0ms latency
 
 OBSERVATIONS:
 1. Accuracy decreases as document count increases
@@ -53,14 +53,14 @@ EXPERIMENT 3: RAG IMPACT - DETAILED ANALYSIS
 COMPARISON: Full Context vs RAG Retrieval
 ----------------------------------------
 FULL CONTEXT:
-  Accuracy: 0.0%
+  Accuracy: 70.0%
   Latency: 0ms
 
 RAG:
-  Accuracy: 0.0%
+  Accuracy: 100.0%
   Latency: 0ms
 
-WINNER: Full Context
+WINNER: RAG
 
 EXPLANATION:
 RAG pre-filters relevant documents, reducing context size
@@ -78,9 +78,9 @@ STRATEGIES TESTED:
 3. WRITE: Structure output in predefined format
 
 RESULTS:
-  SELECT: 0.0% accuracy
-  COMPRESS: 0.0% accuracy
-  WRITE: 0.0% accuracy
+  SELECT: 90.0% accuracy
+  COMPRESS: 80.0% accuracy
+  WRITE: 100.0% accuracy
 
 BEST USE CASES:
   SELECT: Document Q&A, search applications

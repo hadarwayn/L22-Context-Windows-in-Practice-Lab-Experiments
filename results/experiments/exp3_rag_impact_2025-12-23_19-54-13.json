@@ -1,0 +1,145 @@
+{
+  "experiment_name": "exp3_rag_impact",
+  "description": "Compare Full Context vs RAG for accuracy and latency",
+  "timestamp": "2025-12-23_19-54-13",
+  "results": {
+    "trials": {
+      "full_context": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 115.54389994125813,
+          "context_length": 2938
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 125.59690000489354,
+          "context_length": 2938
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 126.54880003537983,
+          "context_length": 2938
+        },
+        {
+          "trial": 4,
+          "correct": false,
+          "latency_ms": 121.04839994572103,
+          "context_length": 2938
+        },
+        {
+          "trial": 5,
+          "correct": true,
+          "latency_ms": 122.21260007936507,
+          "context_length": 2938
+        },
+        {
+          "trial": 6,
+          "correct": false,
+          "latency_ms": 109.29599998053163,
+          "context_length": 2938
+        },
+        {
+          "trial": 7,
+          "correct": false,
+          "latency_ms": 108.6125000147149,
+          "context_length": 2938
+        },
+        {
+          "trial": 8,
+          "correct": true,
+          "latency_ms": 110.89520005043596,
+          "context_length": 2938
+        },
+        {
+          "trial": 9,
+          "correct": true,
+          "latency_ms": 109.15839998051524,
+          "context_length": 2938
+        },
+        {
+          "trial": 10,
+          "correct": true,
+          "latency_ms": 110.86799995973706,
+          "context_length": 2938
+        }
+      ],
+      "rag": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 126.85540004167706,
+          "context_length": 439
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 119.40789991058409,
+          "context_length": 439
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 134.90410009399056,
+          "context_length": 439
+        },
+        {
+          "trial": 4,
+          "correct": true,
+          "latency_ms": 109.91009999997914,
+          "context_length": 439
+        },
+        {
+          "trial": 5,
+          "correct": true,
+          "latency_ms": 109.73040002863854,
+          "context_length": 439
+        },
+        {
+          "trial": 6,
+          "correct": true,
+          "latency_ms": 109.8451999714598,
+          "context_length": 439
+        },
+        {
+          "trial": 7,
+          "correct": true,
+          "latency_ms": 106.72719997819513,
+          "context_length": 439
+        },
+        {
+          "trial": 8,
+          "correct": true,
+          "latency_ms": 108.67049999069422,
+          "context_length": 439
+        },
+        {
+          "trial": 9,
+          "correct": true,
+          "latency_ms": 108.17559994757175,
+          "context_length": 439
+        },
+        {
+          "trial": 10,
+          "correct": true,
+          "latency_ms": 124.97950007673353,
+          "context_length": 439
+        }
+      ]
+    },
+    "summary": {
+      "full_context": {
+        "accuracy": 70.0,
+        "avg_latency_ms": 115.97806999925524,
+        "avg_context_length": 2938.0
+      },
+      "rag": {
+        "accuracy": 100.0,
+        "avg_latency_ms": 115.92059000395238,
+        "avg_context_length": 439.0
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "experiment_name": "exp1_needle_in_haystack",
+  "description": "Test information retrieval accuracy by position (start/middle/end)",
+  "timestamp": "2025-12-22_21-52-01",
+  "results": {
+    "trials": {
+      "start": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 99.68470002058893,
+          "response_preview": "The company CEO is David Cohen. Customer satisfaction metrics have improved substantially this perio"
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 109.53020001761615,
+          "response_preview": "The company CEO is David Cohen. Market analysis indicates strong demand for innovative solutions. In"
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 109.42170000635087,
+          "response_preview": "The company CEO is David Cohen. Market analysis indicates strong demand for innovative solutions. Cu"
+        }
+      ],
+      "middle": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 109.51430001296103,
+          "response_preview": "The management team is focused on sustainable business practices. Customer satisfaction metrics have"
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 109.32640003738925,
+          "response_preview": "The quarterly financial results showed significant growth across all sectors. Customer satisfaction "
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 108.94599999301136,
+          "response_preview": "Strategic partnerships continue to drive organizational development. Operational efficiency has been"
+        }
+      ],
+      "end": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 107.96759999357164,
+          "response_preview": "Investment in research and development remains a top priority. Employee engagement surveys reveal po"
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 107.07459994591773,
+          "response_preview": "Market analysis indicates strong demand for innovative solutions. Operational efficiency has been en"
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 107.03459999058396,
+          "response_preview": "Strategic partnerships continue to drive organizational development. Operational efficiency has been"
+        }
+      ]
+    },
+    "summary": {
+      "start": {
+        "accuracy": 100.0,
+        "avg_latency_ms": 106.21220001485199
+      },
+      "middle": {
+        "accuracy": 100.0,
+        "avg_latency_ms": 109.26223334778722
+      },
+      "end": {
+        "accuracy": 100.0,
+        "avg_latency_ms": 107.35893331002444
+      }
+    }
+  }
+}

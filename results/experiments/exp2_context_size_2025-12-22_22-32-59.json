@@ -1,0 +1,136 @@
+{
+  "experiment_name": "exp2_context_size",
+  "description": "Measure accuracy and latency as document count increases",
+  "timestamp": "2025-12-22_22-32-59",
+  "results": {
+    "trials": {
+      "2": [
+        {
+          "trial": 1,
+          "correct": false,
+          "latency_ms": 205.16299997689202,
+          "tokens_used": 451
+        },
+        {
+          "trial": 2,
+          "correct": false,
+          "latency_ms": 217.82209997763857,
+          "tokens_used": 452
+        },
+        {
+          "trial": 3,
+          "correct": false,
+          "latency_ms": 206.78359997691587,
+          "tokens_used": 456
+        }
+      ],
+      "5": [
+        {
+          "trial": 1,
+          "correct": false,
+          "latency_ms": 230.53020000224933,
+          "tokens_used": 1140
+        },
+        {
+          "trial": 2,
+          "correct": false,
+          "latency_ms": 486.3781999447383,
+          "tokens_used": 1142
+        },
+        {
+          "trial": 3,
+          "correct": false,
+          "latency_ms": 225.489100033883,
+          "tokens_used": 1140
+        }
+      ],
+      "10": [
+        {
+          "trial": 1,
+          "correct": false,
+          "latency_ms": 233.58609998831525,
+          "tokens_used": 2281
+        },
+        {
+          "trial": 2,
+          "correct": false,
+          "latency_ms": 241.66960001457483,
+          "tokens_used": 2293
+        },
+        {
+          "trial": 3,
+          "correct": false,
+          "latency_ms": 502.49279994750395,
+          "tokens_used": 2287
+        }
+      ],
+      "20": [
+        {
+          "trial": 1,
+          "correct": false,
+          "latency_ms": 270.68399998825043,
+          "tokens_used": 4560
+        },
+        {
+          "trial": 2,
+          "correct": false,
+          "latency_ms": 253.11210000654683,
+          "tokens_used": 4567
+        },
+        {
+          "trial": 3,
+          "correct": false,
+          "latency_ms": 262.1892000315711,
+          "tokens_used": 4590
+        }
+      ],
+      "50": [
+        {
+          "trial": 1,
+          "correct": false,
+          "latency_ms": 328.7245000246912,
+          "tokens_used": 11447
+        },
+        {
+          "trial": 2,
+          "correct": false,
+          "latency_ms": 328.27920001000166,
+          "tokens_used": 11400
+        },
+        {
+          "trial": 3,
+          "correct": false,
+          "latency_ms": 308.9942999649793,
+          "tokens_used": 11431
+        }
+      ]
+    },
+    "summary": {
+      "2": {
+        "accuracy": 0.0,
+        "avg_latency_ms": 209.92289997714883,
+        "avg_tokens": 453.0
+      },
+      "5": {
+        "accuracy": 0.0,
+        "avg_latency_ms": 314.1324999936235,
+        "avg_tokens": 1140.6666666666667
+      },
+      "10": {
+        "accuracy": 0.0,
+        "avg_latency_ms": 325.91616665013134,
+        "avg_tokens": 2287.0
+      },
+      "20": {
+        "accuracy": 0.0,
+        "avg_latency_ms": 261.99510000878945,
+        "avg_tokens": 4572.333333333333
+      },
+      "50": {
+        "accuracy": 0.0,
+        "avg_latency_ms": 321.99933333322406,
+        "avg_tokens": 11426.0
+      }
+    }
+  }
+}

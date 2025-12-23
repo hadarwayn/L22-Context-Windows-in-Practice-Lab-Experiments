@@ -1,0 +1,83 @@
+{
+  "experiment_name": "exp1_needle_in_haystack",
+  "description": "Test information retrieval accuracy by position (start/middle/end)",
+  "timestamp": "2025-12-22_21-56-33",
+  "results": {
+    "trials": {
+      "start": [
+        {
+          "trial": 1,
+          "correct": false,
+          "latency_ms": 227.4572000023909,
+          "response_preview": "Error calling Gemini API: 404 Client Error: Not Found for url: https://generativelanguage.googleapis"
+        },
+        {
+          "trial": 2,
+          "correct": false,
+          "latency_ms": 215.5130000319332,
+          "response_preview": "Error calling Gemini API: 404 Client Error: Not Found for url: https://generativelanguage.googleapis"
+        },
+        {
+          "trial": 3,
+          "correct": false,
+          "latency_ms": 232.6689999899827,
+          "response_preview": "Error calling Gemini API: 404 Client Error: Not Found for url: https://generativelanguage.googleapis"
+        }
+      ],
+      "middle": [
+        {
+          "trial": 1,
+          "correct": false,
+          "latency_ms": 464.3423999659717,
+          "response_preview": "Error calling Gemini API: 404 Client Error: Not Found for url: https://generativelanguage.googleapis"
+        },
+        {
+          "trial": 2,
+          "correct": false,
+          "latency_ms": 193.9583999919705,
+          "response_preview": "Error calling Gemini API: 404 Client Error: Not Found for url: https://generativelanguage.googleapis"
+        },
+        {
+          "trial": 3,
+          "correct": false,
+          "latency_ms": 271.5347000048496,
+          "response_preview": "Error calling Gemini API: 404 Client Error: Not Found for url: https://generativelanguage.googleapis"
+        }
+      ],
+      "end": [
+        {
+          "trial": 1,
+          "correct": false,
+          "latency_ms": 215.8470000140369,
+          "response_preview": "Error calling Gemini API: 404 Client Error: Not Found for url: https://generativelanguage.googleapis"
+        },
+        {
+          "trial": 2,
+          "correct": false,
+          "latency_ms": 205.61090001137927,
+          "response_preview": "Error calling Gemini API: 404 Client Error: Not Found for url: https://generativelanguage.googleapis"
+        },
+        {
+          "trial": 3,
+          "correct": false,
+          "latency_ms": 222.9434999753721,
+          "response_preview": "Error calling Gemini API: 404 Client Error: Not Found for url: https://generativelanguage.googleapis"
+        }
+      ]
+    },
+    "summary": {
+      "start": {
+        "accuracy": 0.0,
+        "avg_latency_ms": 225.21306667476892
+      },
+      "middle": {
+        "accuracy": 0.0,
+        "avg_latency_ms": 309.9451666542639
+      },
+      "end": {
+        "accuracy": 0.0,
+        "avg_latency_ms": 214.80046666692942
+      }
+    }
+  }
+}

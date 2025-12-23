@@ -1,0 +1,209 @@
+{
+  "experiment_name": "exp1_needle_in_haystack",
+  "description": "Test information retrieval accuracy by position (start/middle/end)",
+  "timestamp": "2025-12-23_19-53-51",
+  "results": {
+    "trials": {
+      "start": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 119.24619995988905,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 105.7936999714002,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 107.69319999963045,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 4,
+          "correct": true,
+          "latency_ms": 106.57009994611144,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 5,
+          "correct": true,
+          "latency_ms": 108.38329989928752,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 6,
+          "correct": true,
+          "latency_ms": 108.218599925749,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 7,
+          "correct": true,
+          "latency_ms": 107.61459998320788,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 8,
+          "correct": true,
+          "latency_ms": 123.75719996634871,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 9,
+          "correct": true,
+          "latency_ms": 105.18249997403473,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 10,
+          "correct": true,
+          "latency_ms": 107.09529998712242,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        }
+      ],
+      "middle": [
+        {
+          "trial": 1,
+          "correct": false,
+          "latency_ms": 106.93190002348274,
+          "response_preview": "Unable to locate the specific information requested."
+        },
+        {
+          "trial": 2,
+          "correct": false,
+          "latency_ms": 107.39110002759844,
+          "response_preview": "Unable to locate the specific information requested."
+        },
+        {
+          "trial": 3,
+          "correct": false,
+          "latency_ms": 108.26380003709346,
+          "response_preview": "Unable to locate the specific information requested."
+        },
+        {
+          "trial": 4,
+          "correct": true,
+          "latency_ms": 107.52479999791831,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 5,
+          "correct": true,
+          "latency_ms": 108.76610002014786,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 6,
+          "correct": false,
+          "latency_ms": 108.71700011193752,
+          "response_preview": "Unable to locate the specific information requested."
+        },
+        {
+          "trial": 7,
+          "correct": true,
+          "latency_ms": 106.28990002442151,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 8,
+          "correct": false,
+          "latency_ms": 106.7128999857232,
+          "response_preview": "Unable to locate the specific information requested."
+        },
+        {
+          "trial": 9,
+          "correct": true,
+          "latency_ms": 106.08549998141825,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 10,
+          "correct": true,
+          "latency_ms": 107.88349993526936,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        }
+      ],
+      "end": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 107.37520002294332,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 108.52970008272678,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 108.45009994227439,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 4,
+          "correct": true,
+          "latency_ms": 108.62129996530712,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 5,
+          "correct": true,
+          "latency_ms": 104.69029995147139,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 6,
+          "correct": true,
+          "latency_ms": 109.16300001554191,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 7,
+          "correct": true,
+          "latency_ms": 107.65809996519238,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 8,
+          "correct": true,
+          "latency_ms": 109.23379997257143,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 9,
+          "correct": true,
+          "latency_ms": 106.00070003420115,
+          "response_preview": "Based on the context, the answer is: David Cohen"
+        },
+        {
+          "trial": 10,
+          "correct": false,
+          "latency_ms": 108.43049990944564,
+          "response_preview": "Unable to locate the specific information requested."
+        }
+      ]
+    },
+    "summary": {
+      "start": {
+        "accuracy": 100.0,
+        "avg_latency_ms": 109.95546996127814
+      },
+      "middle": {
+        "accuracy": 50.0,
+        "avg_latency_ms": 107.45665001450107
+      },
+      "end": {
+        "accuracy": 90.0,
+        "avg_latency_ms": 107.81526998616755
+      }
+    }
+  }
+}

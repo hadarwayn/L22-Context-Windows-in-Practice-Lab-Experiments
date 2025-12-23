@@ -172,9 +172,22 @@ def generate_hebrew_documents(
         List of (document, topic) tuples
     """
     documents = []
+
+    # Ensure the side effects fact is always included in one medicine document
+    side_effects_fact = "התרופה X עלולה לגרום לתופעות לוואי כמו סחרחורת ובחילה."
+
     for i in range(num_docs):
         topic = topics[i % len(topics)]
         templates = HEBREW_TEMPLATES.get(topic, HEBREW_TEMPLATES["technology"])
-        doc = " ".join(random.sample(templates, min(len(templates), 3)))
+
+        if topic == "medicine" and i < 3:
+            # Ensure side effects are in early medicine documents
+            doc = side_effects_fact + " " + " ".join(
+                random.sample([t for t in templates if t != side_effects_fact],
+                              min(len(templates) - 1, 2))
+            )
+        else:
+            doc = " ".join(random.sample(templates, min(len(templates), 3)))
+
         documents.append((doc, topic))
     return documents

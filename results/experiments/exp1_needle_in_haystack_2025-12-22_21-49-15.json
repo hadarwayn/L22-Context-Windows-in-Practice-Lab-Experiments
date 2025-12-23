@@ -1,0 +1,83 @@
+{
+  "experiment_name": "exp1_needle_in_haystack",
+  "description": "Test information retrieval accuracy by position (start/middle/end)",
+  "timestamp": "2025-12-22_21-49-15",
+  "results": {
+    "trials": {
+      "start": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 111.34819994913414,
+          "response_preview": "The company CEO is David Cohen. Employee engagement surveys reveal positive workplace culture trends"
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 107.49219998251647,
+          "response_preview": "The company CEO is David Cohen. Operational efficiency has been enhanced through process optimizatio"
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 107.79929999262094,
+          "response_preview": "The company CEO is David Cohen. Employee engagement surveys reveal positive workplace culture trends"
+        }
+      ],
+      "middle": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 108.19200001424178,
+          "response_preview": "Employee engagement surveys reveal positive workplace culture trends. The management team is focused"
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 109.01699995156378,
+          "response_preview": "The quarterly financial results showed significant growth across all sectors. Employee engagement su"
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 107.00610000640154,
+          "response_preview": "The quarterly financial results showed significant growth across all sectors. Market analysis indica"
+        }
+      ],
+      "end": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 106.69769998639822,
+          "response_preview": "The management team is focused on sustainable business practices. Market analysis indicates strong d"
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 108.2035000436008,
+          "response_preview": "Strategic partnerships continue to drive organizational development. Customer satisfaction metrics h"
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 108.92749996855855,
+          "response_preview": "The management team is focused on sustainable business practices. The management team is focused on "
+        }
+      ]
+    },
+    "summary": {
+      "start": {
+        "accuracy": 100.0,
+        "avg_latency_ms": 108.87989997475718
+      },
+      "middle": {
+        "accuracy": 100.0,
+        "avg_latency_ms": 108.0716999907357
+      },
+      "end": {
+        "accuracy": 100.0,
+        "avg_latency_ms": 107.94289999951918
+      }
+    }
+  }
+}

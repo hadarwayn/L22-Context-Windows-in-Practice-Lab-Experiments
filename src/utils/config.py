@@ -31,7 +31,7 @@ LOGS_DIR = PROJECT_ROOT / "logs"
 # ==============================================
 
 EXP1_NUM_DOCS = 5
-EXP1_WORDS_PER_DOC = 200
+EXP1_WORDS_PER_DOC = 2000  # Increased for Lost in Middle effect
 EXP1_POSITIONS: List[str] = ["start", "middle", "end"]
 
 
@@ -40,6 +40,7 @@ EXP1_POSITIONS: List[str] = ["start", "middle", "end"]
 # ==============================================
 
 EXP2_DOCUMENT_COUNTS: List[int] = [2, 5, 10, 20, 50]
+EXP2_WORDS_PER_DOC = 500  # Words per document
 
 
 # ==============================================
@@ -65,7 +66,7 @@ EXP4_MAX_TOKENS = 4000
 # General Experiment Settings
 # ==============================================
 
-TRIALS_PER_CONDITION = int(os.getenv("TRIALS_PER_CONDITION", "3"))
+TRIALS_PER_CONDITION = int(os.getenv("TRIALS_PER_CONDITION", "10"))
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
 
 

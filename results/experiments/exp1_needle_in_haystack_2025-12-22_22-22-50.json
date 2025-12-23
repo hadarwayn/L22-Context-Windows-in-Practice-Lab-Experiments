@@ -1,0 +1,83 @@
+{
+  "experiment_name": "exp1_needle_in_haystack",
+  "description": "Test information retrieval accuracy by position (start/middle/end)",
+  "timestamp": "2025-12-22_22-22-50",
+  "results": {
+    "trials": {
+      "start": [
+        {
+          "trial": 1,
+          "correct": false,
+          "latency_ms": 317.8466000244953,
+          "response_preview": "Error calling Gemini API: 429 Client Error: Too Many Requests for url: https://generativelanguage.go"
+        },
+        {
+          "trial": 2,
+          "correct": false,
+          "latency_ms": 450.50089998403564,
+          "response_preview": "Error calling Gemini API: 429 Client Error: Too Many Requests for url: https://generativelanguage.go"
+        },
+        {
+          "trial": 3,
+          "correct": false,
+          "latency_ms": 214.028199960012,
+          "response_preview": "Error calling Gemini API: 429 Client Error: Too Many Requests for url: https://generativelanguage.go"
+        }
+      ],
+      "middle": [
+        {
+          "trial": 1,
+          "correct": false,
+          "latency_ms": 218.98870001314208,
+          "response_preview": "Error calling Gemini API: 429 Client Error: Too Many Requests for url: https://generativelanguage.go"
+        },
+        {
+          "trial": 2,
+          "correct": false,
+          "latency_ms": 212.47699996456504,
+          "response_preview": "Error calling Gemini API: 429 Client Error: Too Many Requests for url: https://generativelanguage.go"
+        },
+        {
+          "trial": 3,
+          "correct": false,
+          "latency_ms": 221.01360000669956,
+          "response_preview": "Error calling Gemini API: 429 Client Error: Too Many Requests for url: https://generativelanguage.go"
+        }
+      ],
+      "end": [
+        {
+          "trial": 1,
+          "correct": false,
+          "latency_ms": 482.2439000126906,
+          "response_preview": "Error calling Gemini API: 429 Client Error: Too Many Requests for url: https://generativelanguage.go"
+        },
+        {
+          "trial": 2,
+          "correct": false,
+          "latency_ms": 213.1336000165902,
+          "response_preview": "Error calling Gemini API: 429 Client Error: Too Many Requests for url: https://generativelanguage.go"
+        },
+        {
+          "trial": 3,
+          "correct": false,
+          "latency_ms": 194.52339998679236,
+          "response_preview": "Error calling Gemini API: 429 Client Error: Too Many Requests for url: https://generativelanguage.go"
+        }
+      ]
+    },
+    "summary": {
+      "start": {
+        "accuracy": 0.0,
+        "avg_latency_ms": 327.45856665618095
+      },
+      "middle": {
+        "accuracy": 0.0,
+        "avg_latency_ms": 217.49309999480224
+      },
+      "end": {
+        "accuracy": 0.0,
+        "avg_latency_ms": 296.633633338691
+      }
+    }
+  }
+}
