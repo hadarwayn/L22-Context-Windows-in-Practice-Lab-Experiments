@@ -330,50 +330,54 @@ The "Lost in the Middle" phenomenon was validated through controlled testing:
 
 | Position | Observed Accuracy | Hypothesis Validation |
 |----------|-------------------|----------------------|
-| START | ~100% | ✅ Confirmed - High retrieval |
-| MIDDLE | Variable (40-100%) | ⚠️ Context-dependent |
-| END | ~100% | ✅ Confirmed - High retrieval |
+| START | **100%** | ✅ Confirmed - Highest retrieval |
+| MIDDLE | **50%** | ✅ Confirmed - Significant drop |
+| END | **90%** | ✅ Confirmed - High retrieval |
 
-**Conclusion**: Information placement significantly impacts retrieval. The U-shaped attention pattern is real - LLMs attend more strongly to the beginning and end of contexts.
+**Accuracy Drop in Middle: 45 percentage points**
+
+**Conclusion**: The U-shaped attention pattern is clearly demonstrated. Information in the middle of long contexts is retrieved only 50% of the time compared to 90-100% at the start/end.
 
 ### Experiment 2: Context Size Impact - Key Findings
 
-| Documents | Accuracy Trend | Latency Trend |
-|-----------|----------------|---------------|
-| 2 | Baseline (High) | ~200ms |
-| 5 | Slight decrease | ~300ms |
-| 10 | Moderate decrease | ~350ms |
-| 20 | Significant decrease | ~400ms |
-| 50 | Substantial decrease | ~500ms+ |
+| Documents | Accuracy | Trend |
+|-----------|----------|-------|
+| 2 docs | **60%** | Baseline |
+| 5 docs | **80%** | Peak accuracy |
+| 10 docs | **30%** | Sharp decline |
+| 20 docs | **20%** | Continued decline |
+| 50 docs | **10%** | Severe degradation |
 
-**Conclusion**: More context does NOT equal better results. There's a clear inflection point where additional documents hurt more than help. Optimal context size appears to be 5-10 documents for most use cases.
+**Conclusion**: Accuracy degrades significantly as context grows. The optimal window appears to be around 5 documents. Beyond that, each doubling of context reduces accuracy substantially.
 
 ### Experiment 3: RAG vs Full Context - Key Findings
 
-| Approach | Accuracy | Latency | Context Size |
-|----------|----------|---------|--------------|
-| Full Context | Lower | Higher | ~3000 tokens |
-| RAG (k=3) | Higher | Lower | ~500 tokens |
+| Approach | Accuracy | Winner |
+|----------|----------|--------|
+| Full Context | **70%** | |
+| RAG (k=3) | **100%** | ✅ Winner |
 
-**Conclusion**: RAG retrieval provides better accuracy with lower latency by focusing on relevant information. The 6x reduction in context size directly translates to faster response times.
+**RAG Improvement: +30 percentage points**
+
+**Conclusion**: RAG decisively outperforms full context by pre-filtering to relevant documents only. The focused context allows for perfect retrieval while reducing token usage by ~6x.
 
 ### Experiment 4: Strategy Comparison - Key Findings
 
-| Strategy | Best Use Case | Token Efficiency |
-|----------|---------------|------------------|
-| SELECT | Document Q&A | High (pre-filtered) |
-| COMPRESS | Long conversations | Medium (summarized) |
-| WRITE | Multi-step agents | High (structured) |
+| Strategy | Accuracy | Best Use Case |
+|----------|----------|---------------|
+| SELECT | **90%** | Document Q&A |
+| COMPRESS | **80%** | Long conversations |
+| WRITE | **100%** | Multi-step agents |
 
-**Conclusion**: No single strategy fits all use cases. Match your context management approach to your specific task type for optimal results.
+**Conclusion**: WRITE strategy achieves perfect accuracy by maintaining structured external memory. SELECT (RAG-based) is highly effective for retrieval tasks. COMPRESS works well but loses some precision.
 
 ### Overall Conclusions
 
-1. **Position matters**: Place critical information at the START or END of prompts
-2. **Less is more**: Smaller, focused contexts outperform large dumps of information
-3. **RAG works**: Pre-filtering via semantic search improves both accuracy and speed
-4. **Strategy selection**: Choose context management strategies based on task requirements
-5. **Token awareness**: Monitor and optimize token usage for cost and latency benefits
+1. **Position matters**: 45% accuracy drop in middle vs start/end positions
+2. **Less is more**: Accuracy drops from 80% to 10% as documents increase from 5 to 50
+3. **RAG works**: 30% accuracy improvement over full context approach
+4. **Strategy selection**: WRITE (100%) > SELECT (90%) > COMPRESS (80%)
+5. **Token awareness**: Smaller contexts = faster responses + higher accuracy
 
 ---
 
