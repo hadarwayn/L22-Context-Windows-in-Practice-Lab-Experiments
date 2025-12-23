@@ -1,0 +1,61 @@
+{
+  "experiment_name": "exp3_rag_impact",
+  "description": "Compare Full Context vs RAG for accuracy and latency",
+  "timestamp": "2025-12-23_19-32-41",
+  "results": {
+    "trials": {
+      "full_context": [
+        {
+          "trial": 1,
+          "correct": false,
+          "latency_ms": 109.0038000838831,
+          "context_length": 2946
+        },
+        {
+          "trial": 2,
+          "correct": false,
+          "latency_ms": 107.9240000108257,
+          "context_length": 2946
+        },
+        {
+          "trial": 3,
+          "correct": false,
+          "latency_ms": 109.8152999766171,
+          "context_length": 2946
+        }
+      ],
+      "rag": [
+        {
+          "trial": 1,
+          "correct": false,
+          "latency_ms": 265.75829996727407,
+          "context_length": 464
+        },
+        {
+          "trial": 2,
+          "correct": false,
+          "latency_ms": 250.0680999364704,
+          "context_length": 464
+        },
+        {
+          "trial": 3,
+          "correct": false,
+          "latency_ms": 265.06409991998225,
+          "context_length": 464
+        }
+      ]
+    },
+    "summary": {
+      "full_context": {
+        "accuracy": 0.0,
+        "avg_latency_ms": 108.91436669044197,
+        "avg_context_length": 2946.0
+      },
+      "rag": {
+        "accuracy": 0.0,
+        "avg_latency_ms": 260.2968332745756,
+        "avg_context_length": 464.0
+      }
+    }
+  }
+}

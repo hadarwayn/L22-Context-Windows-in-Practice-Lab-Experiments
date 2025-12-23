@@ -1,0 +1,83 @@
+{
+  "experiment_name": "exp1_needle_in_haystack",
+  "description": "Test information retrieval accuracy by position (start/middle/end)",
+  "timestamp": "2025-12-22_22-36-20",
+  "results": {
+    "trials": {
+      "start": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 103.47690002527088,
+          "response_preview": "The company CEO is David Cohen. Employee engagement surveys reveal positive workplace culture trends"
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 110.84929999196902,
+          "response_preview": "The company CEO is David Cohen. Market analysis indicates strong demand for innovative solutions. Em"
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 108.57719997875392,
+          "response_preview": "The company CEO is David Cohen. Strategic partnerships continue to drive organizational development."
+        }
+      ],
+      "middle": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 108.32489997847006,
+          "response_preview": "Strategic partnerships continue to drive organizational development. Strategic partnerships continue"
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 109.31059997528791,
+          "response_preview": "The quarterly financial results showed significant growth across all sectors. Operational efficiency"
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 110.857899999246,
+          "response_preview": "Employee engagement surveys reveal positive workplace culture trends. The management team is focused"
+        }
+      ],
+      "end": [
+        {
+          "trial": 1,
+          "correct": true,
+          "latency_ms": 107.02960001071915,
+          "response_preview": "Market analysis indicates strong demand for innovative solutions. Employee engagement surveys reveal"
+        },
+        {
+          "trial": 2,
+          "correct": true,
+          "latency_ms": 106.3952999538742,
+          "response_preview": "Investment in research and development remains a top priority. Market analysis indicates strong dema"
+        },
+        {
+          "trial": 3,
+          "correct": true,
+          "latency_ms": 106.98350000893697,
+          "response_preview": "Customer satisfaction metrics have improved substantially this period. Operational efficiency has be"
+        }
+      ]
+    },
+    "summary": {
+      "start": {
+        "accuracy": 100.0,
+        "avg_latency_ms": 107.63446666533127
+      },
+      "middle": {
+        "accuracy": 100.0,
+        "avg_latency_ms": 109.49779998433466
+      },
+      "end": {
+        "accuracy": 100.0,
+        "avg_latency_ms": 106.80279999117677
+      }
+    }
+  }
+}

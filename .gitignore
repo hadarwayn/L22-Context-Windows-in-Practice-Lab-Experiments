@@ -56,9 +56,8 @@ Thumbs.db
 logs/*.log
 *.log
 
-# Results (keep structure, ignore data)
-results/experiments/*.json
-results/graphs/*.png
+# Results - graphs and reports are tracked for README display
+# Only ignore temporary/debug data if needed
 
 # Jupyter
 .ipynb_checkpoints/
